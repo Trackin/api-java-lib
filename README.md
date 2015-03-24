@@ -18,4 +18,4 @@ Creating a delivery is really easy, see the `createNewDeliveryExample` class!
 
 The only required information is the contact you want to deliver. All the rest is optional!
 
-** This library is still in Beta and can contain some small little bugs **
+**This library is still in Beta and can contain some small little bugs**
