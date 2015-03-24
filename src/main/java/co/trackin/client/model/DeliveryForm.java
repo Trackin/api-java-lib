@@ -29,25 +29,19 @@ public class DeliveryForm {
     private String instructions = null;
     private String name = null;
     private Boolean needCourier = null;
-    private String origin = "API";
+    private String origin;
     private Boolean paid = null;
-
-
     private PaymentMethod paymentMethod = null;
     private String request = null;
-
-    public enum StatusEnum {
-        New, Assigned, Delivering, Delivered, Cancelled,
-    }
-
-    ;
     private StatusEnum status = null;
     private Boolean takeAway = null;
     private Double taxes = null;
     private Double tip = null;
     private Double total = null;
     private Contact recipient = null;
-
+    public enum StatusEnum {
+        New, Assigned, Delivering, Delivered, Cancelled,
+    }
 
     /**
      * True if this is a catering order
