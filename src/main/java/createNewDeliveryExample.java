@@ -27,7 +27,6 @@ public class createNewDeliveryExample {
 
         DeliveryForm delivery = new DeliveryForm();
         delivery.setRecipient(contact);
-        delivery.setTotal(100.00);
 
         try {
             List<Company> allCompanies = service.getAllCompanies(null, null);
