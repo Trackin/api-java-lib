@@ -1,5 +1,6 @@
 package co.trackin.client.model;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.wordnik.swagger.annotations.ApiModel;
 import com.wordnik.swagger.annotations.ApiModelProperty;
@@ -11,6 +12,7 @@ import java.util.List;
 /**
  *
  **/
+@JsonInclude(JsonInclude.Include.NON_NULL)
 @ApiModel(description = "")
 public class Company {
 

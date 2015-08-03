@@ -1,6 +1,7 @@
 package co.trackin.client.model;
 
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.wordnik.swagger.annotations.*;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -8,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 /**
  * 
  **/
+@JsonInclude(JsonInclude.Include.NON_NULL)
 @ApiModel(description = "")
 public class Pick {
   

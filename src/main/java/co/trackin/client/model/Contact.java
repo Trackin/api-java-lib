@@ -1,6 +1,7 @@
 package co.trackin.client.model;
 
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.wordnik.swagger.annotations.ApiModel;
 import com.wordnik.swagger.annotations.ApiModelProperty;
@@ -9,6 +10,7 @@ import com.wordnik.swagger.annotations.ApiModelProperty;
 /**
  * Setting a different address when updating a contact will re geocode the contact
  */
+@JsonInclude(JsonInclude.Include.NON_NULL)
 @ApiModel(description = "Setting a different address when updating a contact will re geocode the contact")
 public class Contact {
 
