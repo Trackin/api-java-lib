@@ -2,6 +2,7 @@ package co.trackin.client.model;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.sun.istack.internal.NotNull;
 import com.wordnik.swagger.annotations.ApiModel;
 import com.wordnik.swagger.annotations.ApiModelProperty;
 
@@ -18,14 +19,23 @@ public class Line {
 
     private String comments = null;
     private String description = null;
-    private String label = null;
+    private String label;
     private List<Pick> picks = new ArrayList<Pick>();
-    private Double price = null;
-    private Integer quantity = null;
-    private Double vat = null;
+    private Double price;
+    private int quantity;
+    private Double vat = (double) 0;
     private String idPartner = null;
     private Double total = null;
 
+
+    public Line(String label, Double price, int quantity){
+        this.label=label;
+        this.price = price;
+        this.quantity = quantity;
+    }
+
+    Line(){
+    }
 
     /**
      **/
@@ -62,10 +72,6 @@ public class Line {
         return label;
     }
 
-    public void setLabel(String label) {
-        this.label = label;
-    }
-
 
     /**
      **/
@@ -89,10 +95,6 @@ public class Line {
         return price;
     }
 
-    public void setPrice(Double price) {
-        this.price = price;
-    }
-
 
     /**
      * Minimum value is 1
@@ -101,10 +103,6 @@ public class Line {
     @JsonProperty("quantity")
     public Integer getQuantity() {
         return quantity;
-    }
-
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
     }
 
 
@@ -142,10 +140,6 @@ public class Line {
     @JsonProperty("total")
     public Double getTotal() {
         return total;
-    }
-
-    public void setTotal(Double total) {
-        this.total = total;
     }
 
 
