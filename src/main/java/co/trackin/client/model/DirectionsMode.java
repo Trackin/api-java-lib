@@ -16,7 +16,7 @@ public enum DirectionsMode {
     private int id;
     private String value;
 
-    private DirectionsMode(int id, String value) {
+    DirectionsMode(int id, String value) {
         this.id = id;
         this.value = value;
     }

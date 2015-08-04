@@ -43,7 +43,6 @@ public class Delivery {
     private String request = null;
     private StatusEnum status = null;
 
-    ;
     private Boolean takeAway = null;
     private Double taxes = null;
     private Double tip = null;
