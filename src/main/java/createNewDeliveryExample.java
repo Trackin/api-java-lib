@@ -27,7 +27,7 @@ public class createNewDeliveryExample {
         DeliveryForm delivery = new DeliveryForm();
         delivery.setRecipient(contact);
 
-
+        //This is optionnal, only the contact is needed to create a new delivery
         List<Line> lines = new ArrayList<Line>();
         lines.add(new Line("Pommelos", 4.5, 2));
 
