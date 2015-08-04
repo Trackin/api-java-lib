@@ -18,7 +18,20 @@ public class CompanyService {
       this.trackinApi = trackinApi;
   }
 
-  public List<Company> getAll(String deliveryAddress, String mode) throws ApiException {
+  public enum OrderType{
+      Delivery("delivery"),
+      CateringDelivery("catering"),
+      TakeAway("takeAway");
+
+      private String value;
+
+      OrderType(String value){ this.value = value; }
+
+      @Override
+      public String toString(){ return value; }
+  }
+
+  public List<Company> getAll(String deliveryAddress, OrderType orderType) throws ApiException {
 
       // create path and map variables
       String path = "/service/api/json/1.1/companies".replaceAll("\\{format\\}", "json");
