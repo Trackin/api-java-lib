@@ -3,7 +3,6 @@ package co.trackin.client.api;
 import co.trackin.client.ApiException;
 import co.trackin.client.model.Customer;
 import co.trackin.client.model.CustomerForm;
-import co.trackin.client.model.Void;
 
 import java.util.HashMap;
 import java.util.List;
@@ -147,7 +146,7 @@ public class CustomerService {
   }
 
 
-  public co.trackin.client.model.Void delete(Long customerId, Long companyId) throws ApiException {
+  public void delete(Long customerId, Long companyId) throws ApiException {
 
 
       // create path and map variables
@@ -159,22 +158,7 @@ public class CustomerService {
       Map<String, String> queryParams = new HashMap<String, String>();
       Map<String, String> headerParams = new HashMap<String, String>();
 
-
-
-      try {
-          String response = trackinApi.invokeAPI(path, "DELETE", queryParams, null, headerParams);
-          if (response != null) {
-              return (Void) trackinApi.deserialize(response, "", Void.class);
-          } else {
-              return null;
-          }
-      } catch (ApiException ex) {
-          if (ex.getCode() == 404) {
-              return null;
-          } else {
-              throw ex;
-          }
-      }
+      trackinApi.invokeAPI(path, "DELETE", queryParams, null, headerParams);
   }
 
 }

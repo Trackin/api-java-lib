@@ -1,17 +1,13 @@
 package co.trackin.client.api;
 
 import co.trackin.client.ApiException;
-
-import java.util.*;
-
 import co.trackin.client.model.Company;
 import co.trackin.client.model.CompanyForm;
 import co.trackin.client.model.CompanyFormUpdate;
 
-import co.trackin.client.model.Void;
-
-import java.util.Map;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import static java.lang.String.valueOf;
 
@@ -144,7 +140,7 @@ public class CompanyService {
   }
   
     
-  public Void updateCompanyAccounts (Long companyId, Long accountId) throws ApiException {
+  public void updateCompanyAccounts (Long companyId, Long accountId) throws ApiException {
 
 
       // create path and map variables
@@ -156,22 +152,8 @@ public class CompanyService {
       Map<String, String> queryParams = new HashMap<String, String>();
       Map<String, String> headerParams = new HashMap<String, String>();
 
+      trackinApi.invokeAPI(path, "PUT", queryParams, null, headerParams);
 
-
-      try {
-          String response = trackinApi.invokeAPI(path, "PUT", queryParams, null, headerParams);
-          if (response != null) {
-              return (Void) trackinApi.deserialize(response, "", Void.class);
-          } else {
-              return null;
-          }
-      } catch (ApiException ex) {
-          if (ex.getCode() == 404) {
-              return null;
-          } else {
-              throw ex;
-          }
-      }
   }
   
 }

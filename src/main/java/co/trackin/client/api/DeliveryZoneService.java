@@ -1,7 +1,6 @@
 package co.trackin.client.api;
 
 import co.trackin.client.ApiException;
-import co.trackin.client.model.Void;
 import co.trackin.client.model.DeliveryZoneVM;
 
 import java.util.HashMap;
@@ -103,7 +102,7 @@ public class DeliveryZoneService {
     }
 
 
-    public co.trackin.client.model.Void delete(Long companyId, Long zoneId) throws ApiException {
+    public void delete(Long companyId, Long zoneId) throws ApiException {
 
 
         // create path and map variables
@@ -115,21 +114,7 @@ public class DeliveryZoneService {
         Map<String, String> queryParams = new HashMap<String, String>();
         Map<String, String> headerParams = new HashMap<String, String>();
 
-
-        try {
-            String response = trackinApi.invokeAPI(path, "DELETE", queryParams, null, headerParams);
-            if (response != null) {
-                return (Void) trackinApi.deserialize(response, "", Void.class);
-            } else {
-                return null;
-            }
-        } catch (ApiException ex) {
-            if (ex.getCode() == 404) {
-                return null;
-            } else {
-                throw ex;
-            }
-        }
+        trackinApi.invokeAPI(path, "DELETE", queryParams, null, headerParams);
     }
 
 }
