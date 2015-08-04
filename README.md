@@ -6,9 +6,7 @@ All the api request are already there, you just need to call them!
 **Before anything, you need to specify your api key and subscription id:**
 
 ```java
-ApiInvoker.setApiKey("trackinExt-zcjc-DUMMYBve52-APIawH7O6LfM-KEYcFnFOBC-1LZnIvQ");
-ApiInvoker.setSubId(454l);
-
+TrackinApi trackinapi = new TrackinApi("trackinExt-zcjc-DUMMYBve52-APIawH7O6LfM-KEYcFnFOBC-1LZnIvQ", 454l);
 ```
 (this is an example, not live credentials)
 
