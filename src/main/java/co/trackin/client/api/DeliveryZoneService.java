@@ -1,7 +1,6 @@
 package co.trackin.client.api;
 
 import co.trackin.client.ApiException;
-import co.trackin.client.ApiInvoker;
 import co.trackin.client.model.Void;
 import co.trackin.client.model.DeliveryZoneVM;
 
@@ -9,18 +8,18 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class DeliveryZoneService {
-    ApiInvoker apiInvoker = ApiInvoker.getInstance();
+    TrackinApi trackinApi;
 
-    public ApiInvoker getInvoker() {
-        return apiInvoker;
+    DeliveryZoneService(TrackinApi trackinApi) {
+        this.trackinApi = trackinApi;
     }
 
-    public DeliveryZoneVM createDeliveryZone(Long companyId, DeliveryZoneVM body) throws ApiException {
+    public DeliveryZoneVM create(Long companyId, DeliveryZoneVM body) throws ApiException {
 
 
         // create path and map variables
         String path = "/service/api/json/1.1/companies/{companyId}/zones".replaceAll("\\{format\\}", "json")
-                .replaceAll("\\{" + "companyId" + "\\}", apiInvoker.escapeString(companyId.toString()));
+                .replaceAll("\\{" + "companyId" + "\\}", trackinApi.escapeString(companyId.toString()));
 
         // query params
         Map<String, String> queryParams = new HashMap<String, String>();
@@ -28,9 +27,9 @@ public class DeliveryZoneService {
 
 
         try {
-            String response = apiInvoker.invokeAPI(path, "POST", queryParams, body, headerParams);
+            String response = trackinApi.invokeAPI(path, "POST", queryParams, body, headerParams);
             if (response != null) {
-                return (DeliveryZoneVM) ApiInvoker.deserialize(response, "", DeliveryZoneVM.class);
+                return (DeliveryZoneVM) trackinApi.deserialize(response, "", DeliveryZoneVM.class);
             } else {
                 return null;
             }
@@ -44,13 +43,13 @@ public class DeliveryZoneService {
     }
 
 
-    public DeliveryZoneVM getOneDeliveryZone(Long companyId, Long zoneId) throws ApiException {
+    public DeliveryZoneVM getOne(Long companyId, Long zoneId) throws ApiException {
 
 
         // create path and map variables
         String path = "/service/api/json/1.1/companies/{companyId}/zones/{zoneId}".replaceAll("\\{format\\}", "json")
-                .replaceAll("\\{" + "companyId" + "\\}", apiInvoker.escapeString(companyId.toString()))
-                .replaceAll("\\{" + "zoneId" + "\\}", apiInvoker.escapeString(zoneId.toString()));
+                .replaceAll("\\{" + "companyId" + "\\}", trackinApi.escapeString(companyId.toString()))
+                .replaceAll("\\{" + "zoneId" + "\\}", trackinApi.escapeString(zoneId.toString()));
 
         // query params
         Map<String, String> queryParams = new HashMap<String, String>();
@@ -58,9 +57,9 @@ public class DeliveryZoneService {
 
 
         try {
-            String response = apiInvoker.invokeAPI(path, "GET", queryParams, null, headerParams);
+            String response = trackinApi.invokeAPI(path, "GET", queryParams, null, headerParams);
             if (response != null) {
-                return (DeliveryZoneVM) ApiInvoker.deserialize(response, "", DeliveryZoneVM.class);
+                return (DeliveryZoneVM) trackinApi.deserialize(response, "", DeliveryZoneVM.class);
             } else {
                 return null;
             }
@@ -74,13 +73,13 @@ public class DeliveryZoneService {
     }
 
 
-    public DeliveryZoneVM updateDeliveryZone(Long companyId, Long zoneId, DeliveryZoneVM body) throws ApiException {
+    public DeliveryZoneVM update(Long companyId, Long zoneId, DeliveryZoneVM body) throws ApiException {
 
 
         // create path and map variables
         String path = "/service/api/json/1.1/companies/{companyId}/zones/{zoneId}".replaceAll("\\{format\\}", "json")
-                .replaceAll("\\{" + "companyId" + "\\}", apiInvoker.escapeString(companyId.toString()))
-                .replaceAll("\\{" + "zoneId" + "\\}", apiInvoker.escapeString(zoneId.toString()));
+                .replaceAll("\\{" + "companyId" + "\\}", trackinApi.escapeString(companyId.toString()))
+                .replaceAll("\\{" + "zoneId" + "\\}", trackinApi.escapeString(zoneId.toString()));
 
         // query params
         Map<String, String> queryParams = new HashMap<String, String>();
@@ -88,9 +87,9 @@ public class DeliveryZoneService {
 
 
         try {
-            String response = apiInvoker.invokeAPI(path, "PUT", queryParams, body, headerParams);
+            String response = trackinApi.invokeAPI(path, "PUT", queryParams, body, headerParams);
             if (response != null) {
-                return (DeliveryZoneVM) ApiInvoker.deserialize(response, "", DeliveryZoneVM.class);
+                return (DeliveryZoneVM) trackinApi.deserialize(response, "", DeliveryZoneVM.class);
             } else {
                 return null;
             }
@@ -104,13 +103,13 @@ public class DeliveryZoneService {
     }
 
 
-    public co.trackin.client.model.Void deleteDeliveryZone(Long companyId, Long zoneId) throws ApiException {
+    public co.trackin.client.model.Void delete(Long companyId, Long zoneId) throws ApiException {
 
 
         // create path and map variables
         String path = "/service/api/json/1.1/companies/{companyId}/zones/{zoneId}".replaceAll("\\{format\\}", "json")
-                .replaceAll("\\{" + "companyId" + "\\}", apiInvoker.escapeString(companyId.toString()))
-                .replaceAll("\\{" + "zoneId" + "\\}", apiInvoker.escapeString(zoneId.toString()));
+                .replaceAll("\\{" + "companyId" + "\\}", trackinApi.escapeString(companyId.toString()))
+                .replaceAll("\\{" + "zoneId" + "\\}", trackinApi.escapeString(zoneId.toString()));
 
         // query params
         Map<String, String> queryParams = new HashMap<String, String>();
@@ -118,9 +117,9 @@ public class DeliveryZoneService {
 
 
         try {
-            String response = apiInvoker.invokeAPI(path, "DELETE", queryParams, null, headerParams);
+            String response = trackinApi.invokeAPI(path, "DELETE", queryParams, null, headerParams);
             if (response != null) {
-                return (Void) ApiInvoker.deserialize(response, "", Void.class);
+                return (Void) trackinApi.deserialize(response, "", Void.class);
             } else {
                 return null;
             }

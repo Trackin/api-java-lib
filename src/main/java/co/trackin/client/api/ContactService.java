@@ -2,28 +2,25 @@ package co.trackin.client.api;
 
 import co.trackin.client.ApiException;
 import co.trackin.client.model.Void;
-import co.trackin.client.ApiInvoker;
 import co.trackin.client.model.Contact;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import static co.trackin.client.ApiInvoker.deserialize;
-
 public class ContactService {
-    ApiInvoker apiInvoker = ApiInvoker.getInstance();
+    TrackinApi trackinApi;
 
-    public ApiInvoker getInvoker() {
-        return apiInvoker;
+    ContactService(TrackinApi trackinApi) {
+
+        this.trackinApi = trackinApi;
     }
 
-
-    public Contact addContactToCompany(Long companyId, Contact body) throws ApiException {
+    public Contact addToCompany(Long companyId, Contact body) throws ApiException {
 
 
         // create path and map variables
         String path = "/service/api/json/1.1/companies/{companyId}/contacts".replaceAll("\\{format\\}", "json")
-                .replaceAll("\\{" + "companyId" + "\\}", apiInvoker.escapeString(companyId.toString()));
+                .replaceAll("\\{" + "companyId" + "\\}", trackinApi.escapeString(companyId.toString()));
 
         // query params
         Map<String, String> queryParams = new HashMap<String, String>();
@@ -31,9 +28,9 @@ public class ContactService {
 
 
         try {
-            String response = apiInvoker.invokeAPI(path, "POST", queryParams, body, headerParams);
+            String response = trackinApi.invokeAPI(path, "POST", queryParams, body, headerParams);
             if (response != null) {
-                return (Contact) deserialize(response, "", Contact.class);
+                return (Contact) trackinApi.deserialize(response, "", Contact.class);
             } else {
                 return null;
             }
@@ -47,13 +44,13 @@ public class ContactService {
     }
 
 
-    public Contact updateContactOnCompany(Long companyId, Long contactId, Contact body) throws ApiException {
+    public Contact updateOnCompany(Long companyId, Long contactId, Contact body) throws ApiException {
 
 
         // create path and map variables
         String path = "/service/api/json/1.1/companies/{companyId}/contacts/{contactId}".replaceAll("\\{format\\}", "json")
-                .replaceAll("\\{" + "companyId" + "\\}", apiInvoker.escapeString(companyId.toString()))
-                .replaceAll("\\{" + "contactId" + "\\}", apiInvoker.escapeString(contactId.toString()));
+                .replaceAll("\\{" + "companyId" + "\\}", trackinApi.escapeString(companyId.toString()))
+                .replaceAll("\\{" + "contactId" + "\\}", trackinApi.escapeString(contactId.toString()));
 
         // query params
         Map<String, String> queryParams = new HashMap<String, String>();
@@ -61,9 +58,9 @@ public class ContactService {
 
 
         try {
-            String response = apiInvoker.invokeAPI(path, "PUT", queryParams, body, headerParams);
+            String response = trackinApi.invokeAPI(path, "PUT", queryParams, body, headerParams);
             if (response != null) {
-                return (Contact) deserialize(response, "", Contact.class);
+                return (Contact) trackinApi.deserialize(response, "", Contact.class);
             } else {
                 return null;
             }
@@ -77,13 +74,13 @@ public class ContactService {
     }
 
 
-    public co.trackin.client.model.Void deleteContactFromCompany(Long companyId, Long contactId) throws ApiException {
+    public co.trackin.client.model.Void deleteFromCompany(Long companyId, Long contactId) throws ApiException {
 
 
         // create path and map variables
         String path = "/service/api/json/1.1/companies/{companyId}/contacts/{contactId}".replaceAll("\\{format\\}", "json")
-                .replaceAll("\\{" + "companyId" + "\\}", apiInvoker.escapeString(companyId.toString()))
-                .replaceAll("\\{" + "contactId" + "\\}", apiInvoker.escapeString(contactId.toString()));
+                .replaceAll("\\{" + "companyId" + "\\}", trackinApi.escapeString(companyId.toString()))
+                .replaceAll("\\{" + "contactId" + "\\}", trackinApi.escapeString(contactId.toString()));
 
         // query params
         Map<String, String> queryParams = new HashMap<String, String>();
@@ -91,9 +88,9 @@ public class ContactService {
 
 
         try {
-            String response = apiInvoker.invokeAPI(path, "DELETE", queryParams, null, headerParams);
+            String response = trackinApi.invokeAPI(path, "DELETE", queryParams, null, headerParams);
             if (response != null) {
-                return (Void) deserialize(response, "", Void.class);
+                return (Void) trackinApi.deserialize(response, "", Void.class);
             } else {
                 return null;
             }
@@ -107,12 +104,12 @@ public class ContactService {
     }
 
 
-    public Contact getOneContact(Long contactId) throws ApiException {
+    public Contact getOne(Long contactId) throws ApiException {
 
 
         // create path and map variables
         String path = "/service/api/json/1.1/contacts/{contactId}".replaceAll("\\{format\\}", "json")
-                .replaceAll("\\{" + "contactId" + "\\}", apiInvoker.escapeString(contactId.toString()));
+                .replaceAll("\\{" + "contactId" + "\\}", trackinApi.escapeString(contactId.toString()));
 
         // query params
         Map<String, String> queryParams = new HashMap<String, String>();
@@ -120,9 +117,9 @@ public class ContactService {
 
 
         try {
-            String response = apiInvoker.invokeAPI(path, "GET", queryParams, null, headerParams);
+            String response = trackinApi.invokeAPI(path, "GET", queryParams, null, headerParams);
             if (response != null) {
-                return (Contact) deserialize(response, "", Contact.class);
+                return (Contact) trackinApi.deserialize(response, "", Contact.class);
             } else {
                 return null;
             }
@@ -136,12 +133,12 @@ public class ContactService {
     }
 
 
-    public Contact updateContact(Long contactId, Contact body) throws ApiException {
+    public Contact update(Long contactId, Contact body) throws ApiException {
 
 
         // create path and map variables
         String path = "/service/api/json/1.1/contacts/{contactId}".replaceAll("\\{format\\}", "json")
-                .replaceAll("\\{" + "contactId" + "\\}", apiInvoker.escapeString(contactId.toString()));
+                .replaceAll("\\{" + "contactId" + "\\}", trackinApi.escapeString(contactId.toString()));
 
         // query params
         Map<String, String> queryParams = new HashMap<String, String>();
@@ -149,9 +146,9 @@ public class ContactService {
 
 
         try {
-            String response = apiInvoker.invokeAPI(path, "PUT", queryParams, body, headerParams);
+            String response = trackinApi.invokeAPI(path, "PUT", queryParams, body, headerParams);
             if (response != null) {
-                return (Contact) deserialize(response, "", Contact.class);
+                return (Contact) trackinApi.deserialize(response, "", Contact.class);
             } else {
                 return null;
             }
@@ -165,12 +162,12 @@ public class ContactService {
     }
 
 
-    public Void deleteContact(Long contactId) throws ApiException {
+    public Void delete(Long contactId) throws ApiException {
 
 
         // create path and map variables
         String path = "/service/api/json/1.1/contacts/{contactId}".replaceAll("\\{format\\}", "json")
-                .replaceAll("\\{" + "contactId" + "\\}", apiInvoker.escapeString(contactId.toString()));
+                .replaceAll("\\{" + "contactId" + "\\}", trackinApi.escapeString(contactId.toString()));
 
         // query params
         Map<String, String> queryParams = new HashMap<String, String>();
@@ -178,9 +175,9 @@ public class ContactService {
 
 
         try {
-            String response = apiInvoker.invokeAPI(path, "DELETE", queryParams, null, headerParams);
+            String response = trackinApi.invokeAPI(path, "DELETE", queryParams, null, headerParams);
             if (response != null) {
-                return (Void) deserialize(response, "", Void.class);
+                return (Void) trackinApi.deserialize(response, "", Void.class);
             } else {
                 return null;
             }
@@ -193,12 +190,12 @@ public class ContactService {
         }
     }
 
-    public Contact addContactToCustomer(Long customerId, Contact body) throws ApiException {
+    public Contact addToCustomer(Long customerId, Contact body) throws ApiException {
 
 
         // create path and map variables
         String path = "/service/api/json/1.1/customers/{customerId}/contacts".replaceAll("\\{format\\}", "json")
-                .replaceAll("\\{" + "customerId" + "\\}", apiInvoker.escapeString(customerId.toString()));
+                .replaceAll("\\{" + "customerId" + "\\}", trackinApi.escapeString(customerId.toString()));
 
         // query params
         Map<String, String> queryParams = new HashMap<String, String>();
@@ -206,9 +203,9 @@ public class ContactService {
 
 
         try {
-            String response = apiInvoker.invokeAPI(path, "POST", queryParams, body, headerParams);
+            String response = trackinApi.invokeAPI(path, "POST", queryParams, body, headerParams);
             if (response != null) {
-                return (Contact) deserialize(response, "", Contact.class);
+                return (Contact) trackinApi.deserialize(response, "", Contact.class);
             } else {
                 return null;
             }
@@ -222,13 +219,13 @@ public class ContactService {
     }
 
 
-    public Contact updateContactOnCustomer(Long customerId, Long contactId, Contact body) throws ApiException {
+    public Contact updateOnCustomer(Long customerId, Long contactId, Contact body) throws ApiException {
 
 
         // create path and map variables
         String path = "/service/api/json/1.1/customers/{customerId}/contacts/{contactId}".replaceAll("\\{format\\}", "json")
-                .replaceAll("\\{" + "customerId" + "\\}", apiInvoker.escapeString(customerId.toString()))
-                .replaceAll("\\{" + "contactId" + "\\}", apiInvoker.escapeString(contactId.toString()));
+                .replaceAll("\\{" + "customerId" + "\\}", trackinApi.escapeString(customerId.toString()))
+                .replaceAll("\\{" + "contactId" + "\\}", trackinApi.escapeString(contactId.toString()));
 
         // query params
         Map<String, String> queryParams = new HashMap<String, String>();
@@ -236,9 +233,9 @@ public class ContactService {
 
 
         try {
-            String response = apiInvoker.invokeAPI(path, "PUT", queryParams, body, headerParams);
+            String response = trackinApi.invokeAPI(path, "PUT", queryParams, body, headerParams);
             if (response != null) {
-                return (Contact) deserialize(response, "", Contact.class);
+                return (Contact) trackinApi.deserialize(response, "", Contact.class);
             } else {
                 return null;
             }
@@ -252,13 +249,13 @@ public class ContactService {
     }
 
 
-    public Void deleteContactFromCustomer(Long customerId, Long contactId) throws ApiException {
+    public Void deleteFromCustomer(Long customerId, Long contactId) throws ApiException {
 
 
         // create path and map variables
         String path = "/service/api/json/1.1/customers/{customerId}/contacts/{contactId}".replaceAll("\\{format\\}", "json")
-                .replaceAll("\\{" + "customerId" + "\\}", apiInvoker.escapeString(customerId.toString()))
-                .replaceAll("\\{" + "contactId" + "\\}", apiInvoker.escapeString(contactId.toString()));
+                .replaceAll("\\{" + "customerId" + "\\}", trackinApi.escapeString(customerId.toString()))
+                .replaceAll("\\{" + "contactId" + "\\}", trackinApi.escapeString(contactId.toString()));
 
         // query params
         Map<String, String> queryParams = new HashMap<String, String>();
@@ -266,9 +263,9 @@ public class ContactService {
 
 
         try {
-            String response = apiInvoker.invokeAPI(path, "DELETE", queryParams, null, headerParams);
+            String response = trackinApi.invokeAPI(path, "DELETE", queryParams, null, headerParams);
             if (response != null) {
-                return (Void) deserialize(response, "", Void.class);
+                return (Void) trackinApi.deserialize(response, "", Void.class);
             } else {
                 return null;
             }

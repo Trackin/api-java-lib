@@ -1,12 +1,13 @@
-package co.trackin.client;
+package co.trackin.client.api;
 
+import co.trackin.client.ApiException;
+import co.trackin.client.JsonUtil;
 import com.fasterxml.jackson.databind.JavaType;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource.Builder;
 import com.sun.jersey.api.client.filter.LoggingFilter;
 import com.sun.jersey.multipart.FormDataMultiPart;
-import com.wordnik.swagger.annotations.Api;
 
 import javax.ws.rs.core.Response.Status.Family;
 import java.io.IOException;
@@ -16,37 +17,50 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ApiInvoker {
-    private static String HOST = "https://backend.app.trackin.co/";
-    private static String ApiKey;
-    private static Long SubId;
-    private static ApiInvoker INSTANCE = new ApiInvoker();
+public class TrackinApi {
+    private String host = "https://backend.app.trackin.co/";
+    private String ApiKey;
+    private Long SubId;
     private Map<String, Client> hostMap = new HashMap<String, Client>();
     private Map<String, String> defaultHeaderMap = new HashMap<String, String>();
     private boolean isDebug = false;
 
-    public static String getApiKey() {
+    public CompanyService companies;
+    public ContactService contacts;
+    public CustomerService customers;
+    public DeliveryService deliveries;
+    public DeliveryZoneService deliveryZones;
+    public DeviceService devices;
+    public MiscellaneousService miscellaneous;
+
+    public TrackinApi(String apiKey, Long subId){
+        this.ApiKey = apiKey;
+        this.SubId = subId;
+        this.companies = new CompanyService(this);
+        this.contacts = new ContactService(this);
+        this.customers = new CustomerService(this);
+        this.deliveries = new DeliveryService(this);
+        this.deliveryZones = new DeliveryZoneService(this);
+        this.devices = new DeviceService(this);
+        this.miscellaneous = new MiscellaneousService(this);
+    }
+
+    public TrackinApi(String apiKey, Long subId, String host){
+        this(apiKey, subId);
+        this.host = host;
+    }
+
+
+    public String getApiKey() {
         return ApiKey;
     }
 
-    public static void setApiKey(String apiKey) {
-        ApiKey = apiKey;
-    }
-
-    public static Long getSubId() {
+    public Long getSubId() {
         return SubId;
-    }
-
-    public static void setSubId(Long subId) {
-        SubId = subId;
     }
 
     public void enableDebug() {
         isDebug = true;
-    }
-
-    public static ApiInvoker getInstance() {
-        return INSTANCE;
     }
 
     public void addDefaultHeader(String key, String value) {
@@ -61,7 +75,7 @@ public class ApiInvoker {
         }
     }
 
-    public static Object deserialize(String json, String containerType, Class cls) throws ApiException {
+    public Object deserialize(String json, String containerType, Class cls) throws ApiException {
         if (null != containerType) {
             containerType = containerType.toLowerCase();
         }
@@ -83,7 +97,7 @@ public class ApiInvoker {
         }
     }
 
-    public static String serialize(Object obj) throws ApiException {
+    public String serialize(Object obj) throws ApiException {
         try {
             if (obj != null)
                 return JsonUtil.getJsonMapper().writeValueAsString(obj);
@@ -94,17 +108,13 @@ public class ApiInvoker {
         }
     }
 
-    public static void setHost(String host){
-        ApiInvoker.HOST = host;
-    }
-
-    public static String getHost(){
-        return ApiInvoker.HOST;
+    public String getHost(){
+        return this.host;
     }
 
 
     public String invokeAPI(String path, String method, Map<String, String> queryParams, Object body, Map<String, String> headerParams) throws ApiException {
-        Client client = getClient(HOST);
+        Client client = getClient(host);
         String contentType = "application/json";
 
         StringBuilder b = new StringBuilder();
@@ -121,7 +131,7 @@ public class ApiInvoker {
         }
         String querystring = b.toString();
 
-        Builder builder = client.resource(HOST + path + querystring).accept("application/json");
+        Builder builder = client.resource(host + path + querystring).accept("application/json");
 
         if (ApiKey == null || ApiKey.isEmpty()){
             throw new ApiException(1, "You must set an api key [using ApiInvoker.setApiKey()]");

@@ -1,7 +1,6 @@
 package co.trackin.client.api;
 
 import co.trackin.client.ApiException;
-import co.trackin.client.ApiInvoker;
 
 import java.util.*;
 
@@ -14,17 +13,16 @@ import co.trackin.client.model.Void;
 import java.util.Map;
 import java.util.HashMap;
 
-import static co.trackin.client.ApiInvoker.deserialize;
 import static java.lang.String.valueOf;
 
 public class CompanyService {
-  ApiInvoker apiInvoker = ApiInvoker.getInstance();
+  TrackinApi trackinApi;
 
-  public ApiInvoker getInvoker() {
-    return apiInvoker;
+  CompanyService(TrackinApi trackinApi) {
+      this.trackinApi = trackinApi;
   }
-    
-  public List<Company> getAllCompanies (String _for, String mode) throws ApiException {
+
+  public List<Company> getAll(String _for, String mode) throws ApiException {
 
       // create path and map variables
       String path = "/service/api/json/1.1/companies".replaceAll("\\{format\\}", "json");
@@ -41,9 +39,9 @@ public class CompanyService {
 
 
       try {
-          String response = apiInvoker.invokeAPI(path, "GET", queryParams, null, headerParams);
+          String response = trackinApi.invokeAPI(path, "GET", queryParams, null, headerParams);
           if (response != null) {
-              return (List<Company>) deserialize(response, "array", Company.class);
+              return (List<Company>) trackinApi.deserialize(response, "array", Company.class);
           } else {
               return null;
           }
@@ -57,7 +55,7 @@ public class CompanyService {
   }
   
     
-  public Company createCompany (CompanyForm body) throws ApiException {
+  public Company create(CompanyForm body) throws ApiException {
 
 
       // create path and map variables
@@ -70,9 +68,9 @@ public class CompanyService {
 
 
       try {
-          String response = apiInvoker.invokeAPI(path, "POST", queryParams, body, headerParams);
+          String response = trackinApi.invokeAPI(path, "POST", queryParams, body, headerParams);
           if (response != null) {
-              return (Company) deserialize(response, "", Company.class);
+              return (Company) trackinApi.deserialize(response, "", Company.class);
           } else {
               return null;
           }
@@ -86,12 +84,12 @@ public class CompanyService {
   }
   
     
-  public Company getOneCompany (Long companyId) throws ApiException {
+  public Company getOne(Long companyId) throws ApiException {
 
 
       // create path and map variables
       String path = "/service/api/json/1.1/companies/{companyId}".replaceAll("\\{format\\}", "json")
-              .replaceAll("\\{" + "companyId" + "\\}", apiInvoker.escapeString(companyId.toString()));
+              .replaceAll("\\{" + "companyId" + "\\}", trackinApi.escapeString(companyId.toString()));
 
       // query params
       Map<String, String> queryParams = new HashMap<String, String>();
@@ -100,9 +98,9 @@ public class CompanyService {
 
 
       try {
-          String response = apiInvoker.invokeAPI(path, "GET", queryParams, null, headerParams);
+          String response = trackinApi.invokeAPI(path, "GET", queryParams, null, headerParams);
           if (response != null) {
-              return (Company) deserialize(response, "", Company.class);
+              return (Company) trackinApi.deserialize(response, "", Company.class);
           } else {
               return null;
           }
@@ -116,12 +114,12 @@ public class CompanyService {
   }
   
     
-  public Company updateCompany (Long companyId, CompanyFormUpdate body) throws ApiException {
+  public Company update(Long companyId, CompanyFormUpdate body) throws ApiException {
 
 
       // create path and map variables
       String path = "/service/api/json/1.1/companies/{companyId}".replaceAll("\\{format\\}", "json")
-              .replaceAll("\\{" + "companyId" + "\\}", apiInvoker.escapeString(companyId.toString()));
+              .replaceAll("\\{" + "companyId" + "\\}", trackinApi.escapeString(companyId.toString()));
 
       // query params
       Map<String, String> queryParams = new HashMap<String, String>();
@@ -130,9 +128,9 @@ public class CompanyService {
 
 
       try {
-          String response = apiInvoker.invokeAPI(path, "PUT", queryParams, body, headerParams);
+          String response = trackinApi.invokeAPI(path, "PUT", queryParams, body, headerParams);
           if (response != null) {
-              return (Company) deserialize(response, "", Company.class);
+              return (Company) trackinApi.deserialize(response, "", Company.class);
           } else {
               return null;
           }
@@ -151,8 +149,8 @@ public class CompanyService {
 
       // create path and map variables
       String path = "/service/api/json/1.1/companies/{companyId}/account/{accountId}".replaceAll("\\{format\\}", "json")
-              .replaceAll("\\{" + "companyId" + "\\}", apiInvoker.escapeString(companyId.toString()))
-              .replaceAll("\\{" + "accountId" + "\\}", apiInvoker.escapeString(accountId.toString()));
+              .replaceAll("\\{" + "companyId" + "\\}", trackinApi.escapeString(companyId.toString()))
+              .replaceAll("\\{" + "accountId" + "\\}", trackinApi.escapeString(accountId.toString()));
 
       // query params
       Map<String, String> queryParams = new HashMap<String, String>();
@@ -161,9 +159,9 @@ public class CompanyService {
 
 
       try {
-          String response = apiInvoker.invokeAPI(path, "PUT", queryParams, null, headerParams);
+          String response = trackinApi.invokeAPI(path, "PUT", queryParams, null, headerParams);
           if (response != null) {
-              return (Void) deserialize(response, "", Void.class);
+              return (Void) trackinApi.deserialize(response, "", Void.class);
           } else {
               return null;
           }

@@ -1,7 +1,6 @@
 package co.trackin.client.api;
 
 import co.trackin.client.ApiException;
-import co.trackin.client.ApiInvoker;
 import co.trackin.client.model.DeliveryFormUpdate;
 import co.trackin.client.model.Delivery;
 import co.trackin.client.model.Device;
@@ -16,19 +15,18 @@ import java.util.HashMap;
 import static java.lang.String.valueOf;
 
 public class DeliveryService {
-  ApiInvoker apiInvoker = ApiInvoker.getInstance();
+  TrackinApi trackinApi;
 
-  public ApiInvoker getInvoker() {
-    return apiInvoker;
+  DeliveryService(TrackinApi trackinApi) {
+      this.trackinApi = trackinApi;
   }
 
-    
-  public List<Delivery> getAllDeliveries (Long companyId, Long after, Long before, String status) throws ApiException {
+  public List<Delivery> getAll(Long companyId, Long after, Long before, String status) throws ApiException {
 
 
       // create path and map variables
       String path = "/service/api/json/1.1/companies/{companyId}/orders".replaceAll("\\{format\\}", "json")
-              .replaceAll("\\{" + "companyId" + "\\}", apiInvoker.escapeString(companyId.toString()));
+              .replaceAll("\\{" + "companyId" + "\\}", trackinApi.escapeString(companyId.toString()));
 
       // query params
       Map<String, String> queryParams = new HashMap<String, String>();
@@ -44,9 +42,9 @@ public class DeliveryService {
 
 
       try {
-          String response = apiInvoker.invokeAPI(path, "GET", queryParams, null, headerParams);
+          String response = trackinApi.invokeAPI(path, "GET", queryParams, null, headerParams);
           if (response != null) {
-              return (List<Delivery>) ApiInvoker.deserialize(response, "array", Delivery.class);
+              return (List<Delivery>) trackinApi.deserialize(response, "array", Delivery.class);
           } else {
               return null;
           }
@@ -60,12 +58,12 @@ public class DeliveryService {
   }
   
     
-  public Delivery createDelivery (Long companyId, DeliveryForm body) throws ApiException {
+  public Delivery create(Long companyId, DeliveryForm body) throws ApiException {
 
 
       // create path and map variables
       String path = "/service/api/json/1.1/companies/{companyId}/orders".replaceAll("\\{format\\}", "json")
-              .replaceAll("\\{" + "companyId" + "\\}", apiInvoker.escapeString(companyId.toString()));
+              .replaceAll("\\{" + "companyId" + "\\}", trackinApi.escapeString(companyId.toString()));
 
       // query params
       Map<String, String> queryParams = new HashMap<String, String>();
@@ -74,9 +72,9 @@ public class DeliveryService {
 
 
       try {
-          String response = apiInvoker.invokeAPI(path, "POST", queryParams, body, headerParams);
+          String response = trackinApi.invokeAPI(path, "POST", queryParams, body, headerParams);
           if (response != null) {
-              return (Delivery) ApiInvoker.deserialize(response, "", Delivery.class);
+              return (Delivery) trackinApi.deserialize(response, "", Delivery.class);
           } else {
               return null;
           }
@@ -90,13 +88,13 @@ public class DeliveryService {
   }
   
     
-  public Delivery updateDelivery (Long deliveryId, DeliveryFormUpdate body, Long companyId) throws ApiException {
+  public Delivery update(Long deliveryId, DeliveryFormUpdate body, Long companyId) throws ApiException {
 
 
       // create path and map variables
       String path = "/service/api/json/1.1/companies/{companyId}/orders/{deliveryId}".replaceAll("\\{format\\}", "json")
-              .replaceAll("\\{" + "deliveryId" + "\\}", apiInvoker.escapeString(deliveryId.toString()))
-              .replaceAll("\\{" + "companyId" + "\\}", apiInvoker.escapeString(companyId.toString()));
+              .replaceAll("\\{" + "deliveryId" + "\\}", trackinApi.escapeString(deliveryId.toString()))
+              .replaceAll("\\{" + "companyId" + "\\}", trackinApi.escapeString(companyId.toString()));
 
       // query params
       Map<String, String> queryParams = new HashMap<String, String>();
@@ -105,9 +103,9 @@ public class DeliveryService {
 
 
       try {
-          String response = apiInvoker.invokeAPI(path, "PUT", queryParams, body, headerParams);
+          String response = trackinApi.invokeAPI(path, "PUT", queryParams, body, headerParams);
           if (response != null) {
-              return (Delivery) ApiInvoker.deserialize(response, "", Delivery.class);
+              return (Delivery) trackinApi.deserialize(response, "", Delivery.class);
           } else {
               return null;
           }
@@ -121,13 +119,13 @@ public class DeliveryService {
   }
   
     
-  public Delivery cancelDelivery (String api_key, Long companyId, Long sub_id, Long idOrder) throws ApiException {
+  public Delivery cancel(String api_key, Long companyId, Long sub_id, Long idOrder) throws ApiException {
 
 
       // create path and map variables
       String path = "/service/api/json/1.1/companies/{companyId}/orders/{idOrder}/cancel".replaceAll("\\{format\\}", "json")
-              .replaceAll("\\{" + "companyId" + "\\}", apiInvoker.escapeString(companyId.toString()))
-              .replaceAll("\\{" + "idOrder" + "\\}", apiInvoker.escapeString(idOrder.toString()));
+              .replaceAll("\\{" + "companyId" + "\\}", trackinApi.escapeString(companyId.toString()))
+              .replaceAll("\\{" + "idOrder" + "\\}", trackinApi.escapeString(idOrder.toString()));
 
       // query params
       Map<String, String> queryParams = new HashMap<String, String>();
@@ -136,9 +134,9 @@ public class DeliveryService {
 
 
       try {
-          String response = apiInvoker.invokeAPI(path, "PUT", queryParams, null, headerParams);
+          String response = trackinApi.invokeAPI(path, "PUT", queryParams, null, headerParams);
           if (response != null) {
-              return (Delivery) ApiInvoker.deserialize(response, "", Delivery.class);
+              return (Delivery) trackinApi.deserialize(response, "", Delivery.class);
           } else {
               return null;
           }
@@ -157,8 +155,8 @@ public class DeliveryService {
 
       // create path and map variables
       String path = "/service/api/json/1.1/companies/{companyId}/orders/{idOrder}/dispatch".replaceAll("\\{format\\}", "json")
-              .replaceAll("\\{" + "idOrder" + "\\}", apiInvoker.escapeString(idOrder.toString()))
-              .replaceAll("\\{" + "companyId" + "\\}", apiInvoker.escapeString(companyId.toString()));
+              .replaceAll("\\{" + "idOrder" + "\\}", trackinApi.escapeString(idOrder.toString()))
+              .replaceAll("\\{" + "companyId" + "\\}", trackinApi.escapeString(companyId.toString()));
 
       // query params
       Map<String, String> queryParams = new HashMap<String, String>();
@@ -167,9 +165,9 @@ public class DeliveryService {
 
 
       try {
-          String response = apiInvoker.invokeAPI(path, "PUT", queryParams, body, headerParams);
+          String response = trackinApi.invokeAPI(path, "PUT", queryParams, body, headerParams);
           if (response != null) {
-              return (Delivery) ApiInvoker.deserialize(response, "", Delivery.class);
+              return (Delivery) trackinApi.deserialize(response, "", Delivery.class);
           } else {
               return null;
           }
@@ -183,13 +181,13 @@ public class DeliveryService {
   }
   
     
-  public Delivery endDelivery (String api_key, Long companyId, Long sub_id, Long idOrder) throws ApiException {
+  public Delivery end(String api_key, Long companyId, Long sub_id, Long idOrder) throws ApiException {
 
 
       // create path and map variables
       String path = "/service/api/json/1.1/companies/{companyId}/orders/{idOrder}/end".replaceAll("\\{format\\}", "json")
-              .replaceAll("\\{" + "companyId" + "\\}", apiInvoker.escapeString(companyId.toString()))
-              .replaceAll("\\{" + "idOrder" + "\\}", apiInvoker.escapeString(idOrder.toString()));
+              .replaceAll("\\{" + "companyId" + "\\}", trackinApi.escapeString(companyId.toString()))
+              .replaceAll("\\{" + "idOrder" + "\\}", trackinApi.escapeString(idOrder.toString()));
 
       // query params
       Map<String, String> queryParams = new HashMap<String, String>();
@@ -198,9 +196,9 @@ public class DeliveryService {
 
 
       try {
-          String response = apiInvoker.invokeAPI(path, "PUT", queryParams, null, headerParams);
+          String response = trackinApi.invokeAPI(path, "PUT", queryParams, null, headerParams);
           if (response != null) {
-              return (Delivery) ApiInvoker.deserialize(response, "", Delivery.class);
+              return (Delivery) trackinApi.deserialize(response, "", Delivery.class);
           } else {
               return null;
           }
@@ -214,13 +212,13 @@ public class DeliveryService {
   }
   
     
-  public Delivery getOneDelivery (Long companyId, Long orderId) throws ApiException {
+  public Delivery getOne(Long companyId, Long orderId) throws ApiException {
 
 
       // create path and map variables
       String path = "/service/api/json/1.1/companies/{companyId}/orders/{orderId}".replaceAll("\\{format\\}", "json")
-              .replaceAll("\\{" + "companyId" + "\\}", apiInvoker.escapeString(companyId.toString()))
-              .replaceAll("\\{" + "orderId" + "\\}", apiInvoker.escapeString(orderId.toString()));
+              .replaceAll("\\{" + "companyId" + "\\}", trackinApi.escapeString(companyId.toString()))
+              .replaceAll("\\{" + "orderId" + "\\}", trackinApi.escapeString(orderId.toString()));
 
       // query params
       Map<String, String> queryParams = new HashMap<String, String>();
@@ -229,9 +227,9 @@ public class DeliveryService {
 
 
       try {
-          String response = apiInvoker.invokeAPI(path, "GET", queryParams, null, headerParams);
+          String response = trackinApi.invokeAPI(path, "GET", queryParams, null, headerParams);
           if (response != null) {
-              return (Delivery) ApiInvoker.deserialize(response, "", Delivery.class);
+              return (Delivery) trackinApi.deserialize(response, "", Delivery.class);
           } else {
               return null;
           }

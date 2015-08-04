@@ -1,7 +1,6 @@
 package co.trackin.client.api;
 
 import co.trackin.client.ApiException;
-import co.trackin.client.ApiInvoker;
 import co.trackin.client.model.Device;
 
 import java.util.*;
@@ -10,19 +9,19 @@ import java.util.Map;
 import java.util.HashMap;
 
 public class DeviceService {
-  ApiInvoker apiInvoker = ApiInvoker.getInstance();
+  TrackinApi trackinApi;
 
-  public ApiInvoker getInvoker() {
-    return apiInvoker;
+  DeviceService(TrackinApi trackinApi) {
+      this.trackinApi = trackinApi;
   }
-    
-  public List<Device> getAllDevices (Long companyId) throws ApiException {
+
+  public List<Device> getAll(Long companyId) throws ApiException {
       Object postBody = null;
 
 
       // create path and map variables
       String path = "/service/api/json/1.1/companies/{companyId}/devices".replaceAll("\\{format\\}", "json")
-              .replaceAll("\\{" + "companyId" + "\\}", apiInvoker.escapeString(companyId.toString()));
+              .replaceAll("\\{" + "companyId" + "\\}", trackinApi.escapeString(companyId.toString()));
 
       // query params
       Map<String, String> queryParams = new HashMap<String, String>();
@@ -31,9 +30,9 @@ public class DeviceService {
 
 
       try {
-          String response = apiInvoker.invokeAPI(path, "GET", queryParams, postBody, headerParams);
+          String response = trackinApi.invokeAPI(path, "GET", queryParams, postBody, headerParams);
           if (response != null) {
-              return (List<Device>) ApiInvoker.deserialize(response, "array", Device.class);
+              return (List<Device>) trackinApi.deserialize(response, "array", Device.class);
           } else {
               return null;
           }
@@ -47,12 +46,12 @@ public class DeviceService {
   }
   
     
-  public Device createDevice (Long companyId, Device body) throws ApiException {
+  public Device create(Long companyId, Device body) throws ApiException {
 
 
       // create path and map variables
       String path = "/service/api/json/1.1/companies/{companyId}/devices".replaceAll("\\{format\\}", "json")
-              .replaceAll("\\{" + "companyId" + "\\}", apiInvoker.escapeString(companyId.toString()));
+              .replaceAll("\\{" + "companyId" + "\\}", trackinApi.escapeString(companyId.toString()));
 
       // query params
       Map<String, String> queryParams = new HashMap<String, String>();
@@ -61,9 +60,9 @@ public class DeviceService {
 
 
       try {
-          String response = apiInvoker.invokeAPI(path, "POST", queryParams, body, headerParams);
+          String response = trackinApi.invokeAPI(path, "POST", queryParams, body, headerParams);
           if (response != null) {
-              return (Device) ApiInvoker.deserialize(response, "", Device.class);
+              return (Device) trackinApi.deserialize(response, "", Device.class);
           } else {
               return null;
           }
@@ -77,13 +76,13 @@ public class DeviceService {
   }
   
     
-  public Device getOneDevice (Long companyId, Long deviceId) throws ApiException {
+  public Device getOne(Long companyId, Long deviceId) throws ApiException {
 
 
       // create path and map variables
       String path = "/service/api/json/1.1/companies/{companyId}/devices/{deviceId}".replaceAll("\\{format\\}", "json")
-              .replaceAll("\\{" + "companyId" + "\\}", apiInvoker.escapeString(companyId.toString()))
-              .replaceAll("\\{" + "deviceId" + "\\}", apiInvoker.escapeString(deviceId.toString()));
+              .replaceAll("\\{" + "companyId" + "\\}", trackinApi.escapeString(companyId.toString()))
+              .replaceAll("\\{" + "deviceId" + "\\}", trackinApi.escapeString(deviceId.toString()));
 
       // query params
       Map<String, String> queryParams = new HashMap<String, String>();
@@ -92,9 +91,9 @@ public class DeviceService {
 
 
       try {
-          String response = apiInvoker.invokeAPI(path, "GET", queryParams, null, headerParams);
+          String response = trackinApi.invokeAPI(path, "GET", queryParams, null, headerParams);
           if (response != null) {
-              return (Device) ApiInvoker.deserialize(response, "", Device.class);
+              return (Device) trackinApi.deserialize(response, "", Device.class);
           } else {
               return null;
           }

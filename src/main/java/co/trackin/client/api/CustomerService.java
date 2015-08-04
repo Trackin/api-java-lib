@@ -1,33 +1,29 @@
 package co.trackin.client.api;
 
 import co.trackin.client.ApiException;
-import co.trackin.client.model.Void;
-import co.trackin.client.ApiInvoker;
-
-import java.util.*;
-
 import co.trackin.client.model.Customer;
 import co.trackin.client.model.CustomerForm;
+import co.trackin.client.model.Void;
 
-import java.util.Map;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-import static co.trackin.client.ApiInvoker.deserialize;
 import static java.lang.String.valueOf;
 
 public class CustomerService {
-  ApiInvoker apiInvoker = ApiInvoker.getInstance();
+  TrackinApi trackinApi;
 
-  public ApiInvoker getInvoker() {
-    return apiInvoker;
+  CustomerService(TrackinApi trackinApi) {
+      this.trackinApi = trackinApi;
   }
-    
+
   public List<Customer> getAll (Long companyId, String query, Integer page, Integer per_page) throws ApiException {
 
 
       // create path and map variables
       String path = "/service/api/json/1.1/companies/{companyId}/customers".replaceAll("\\{format\\}", "json")
-              .replaceAll("\\{" + "companyId" + "\\}", apiInvoker.escapeString(companyId.toString()));
+              .replaceAll("\\{" + "companyId" + "\\}", trackinApi.escapeString(companyId.toString()));
 
       // query params
       Map<String, String> queryParams = new HashMap<String, String>();
@@ -43,9 +39,9 @@ public class CustomerService {
 
 
       try {
-          String response = apiInvoker.invokeAPI(path, "GET", queryParams, null, headerParams);
+          String response = trackinApi.invokeAPI(path, "GET", queryParams, null, headerParams);
           if (response != null) {
-              return (List<Customer>) deserialize(response, "array", Customer.class);
+              return (List<Customer>) trackinApi.deserialize(response, "array", Customer.class);
           } else {
               return null;
           }
@@ -57,14 +53,14 @@ public class CustomerService {
           }
       }
   }
-  
-    
-  public Customer createCustomer (Long companyId, Customer body) throws ApiException {
+
+
+  public Customer create(Long companyId, Customer body) throws ApiException {
 
 
       // create path and map variables
       String path = "/service/api/json/1.1/companies/{companyId}/customers".replaceAll("\\{format\\}", "json")
-              .replaceAll("\\{" + "companyId" + "\\}", apiInvoker.escapeString(companyId.toString()));
+              .replaceAll("\\{" + "companyId" + "\\}", trackinApi.escapeString(companyId.toString()));
 
       // query params
       Map<String, String> queryParams = new HashMap<String, String>();
@@ -73,9 +69,9 @@ public class CustomerService {
 
 
       try {
-          String response = apiInvoker.invokeAPI(path, "POST", queryParams, body, headerParams);
+          String response = trackinApi.invokeAPI(path, "POST", queryParams, body, headerParams);
           if (response != null) {
-              return (Customer) deserialize(response, "", Customer.class);
+              return (Customer) trackinApi.deserialize(response, "", Customer.class);
           } else {
               return null;
           }
@@ -87,15 +83,15 @@ public class CustomerService {
           }
       }
   }
-  
-    
-  public Customer getOneCustomer (Long companyId, Long customerId) throws ApiException {
+
+
+  public Customer getOne(Long companyId, Long customerId) throws ApiException {
 
 
       // create path and map variables
       String path = "/service/api/json/1.1/companies/{companyId}/customers/{customerId}".replaceAll("\\{format\\}", "json")
-              .replaceAll("\\{" + "companyId" + "\\}", apiInvoker.escapeString(companyId.toString()))
-              .replaceAll("\\{" + "customerId" + "\\}", apiInvoker.escapeString(customerId.toString()));
+              .replaceAll("\\{" + "companyId" + "\\}", trackinApi.escapeString(companyId.toString()))
+              .replaceAll("\\{" + "customerId" + "\\}", trackinApi.escapeString(customerId.toString()));
 
       // query params
       Map<String, String> queryParams = new HashMap<String, String>();
@@ -104,9 +100,9 @@ public class CustomerService {
 
 
       try {
-          String response = apiInvoker.invokeAPI(path, "GET", queryParams, null, headerParams);
+          String response = trackinApi.invokeAPI(path, "GET", queryParams, null, headerParams);
           if (response != null) {
-              return (Customer) deserialize(response, "", Customer.class);
+              return (Customer) trackinApi.deserialize(response, "", Customer.class);
           } else {
               return null;
           }
@@ -118,15 +114,15 @@ public class CustomerService {
           }
       }
   }
-  
-    
-  public Customer updateCustomer (Long companyId, Long customerId, CustomerForm body) throws ApiException {
+
+
+  public Customer update(Long companyId, Long customerId, CustomerForm body) throws ApiException {
 
 
       // create path and map variables
       String path = "/service/api/json/1.1/companies/{companyId}/customers/{customerId}".replaceAll("\\{format\\}", "json")
-              .replaceAll("\\{" + "companyId" + "\\}", apiInvoker.escapeString(companyId.toString()))
-              .replaceAll("\\{" + "customerId" + "\\}", apiInvoker.escapeString(customerId.toString()));
+              .replaceAll("\\{" + "companyId" + "\\}", trackinApi.escapeString(companyId.toString()))
+              .replaceAll("\\{" + "customerId" + "\\}", trackinApi.escapeString(customerId.toString()));
 
       // query params
       Map<String, String> queryParams = new HashMap<String, String>();
@@ -135,9 +131,9 @@ public class CustomerService {
 
 
       try {
-          String response = apiInvoker.invokeAPI(path, "PUT", queryParams, body, headerParams);
+          String response = trackinApi.invokeAPI(path, "PUT", queryParams, body, headerParams);
           if (response != null) {
-              return (Customer) deserialize(response, "", Customer.class);
+              return (Customer) trackinApi.deserialize(response, "", Customer.class);
           } else {
               return null;
           }
@@ -149,15 +145,15 @@ public class CustomerService {
           }
       }
   }
-  
-    
-  public co.trackin.client.model.Void deleteCustomer (Long customerId, Long companyId) throws ApiException {
+
+
+  public co.trackin.client.model.Void delete(Long customerId, Long companyId) throws ApiException {
 
 
       // create path and map variables
       String path = "/service/api/json/1.1/companies/{companyId}/customers/{customerId}".replaceAll("\\{format\\}", "json")
-              .replaceAll("\\{" + "customerId" + "\\}", apiInvoker.escapeString(customerId.toString()))
-              .replaceAll("\\{" + "companyId" + "\\}", apiInvoker.escapeString(companyId.toString()));
+              .replaceAll("\\{" + "customerId" + "\\}", trackinApi.escapeString(customerId.toString()))
+              .replaceAll("\\{" + "companyId" + "\\}", trackinApi.escapeString(companyId.toString()));
 
       // query params
       Map<String, String> queryParams = new HashMap<String, String>();
@@ -166,9 +162,9 @@ public class CustomerService {
 
 
       try {
-          String response = apiInvoker.invokeAPI(path, "DELETE", queryParams, null, headerParams);
+          String response = trackinApi.invokeAPI(path, "DELETE", queryParams, null, headerParams);
           if (response != null) {
-              return (Void) deserialize(response, "", Void.class);
+              return (Void) trackinApi.deserialize(response, "", Void.class);
           } else {
               return null;
           }
@@ -180,5 +176,5 @@ public class CustomerService {
           }
       }
   }
-  
+
 }

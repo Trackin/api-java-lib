@@ -1,7 +1,6 @@
 package co.trackin.client.api;
 
 import co.trackin.client.ApiException;
-import co.trackin.client.ApiInvoker;
 import co.trackin.client.model.Country;
 import co.trackin.client.model.Subscription;
 
@@ -9,15 +8,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static co.trackin.client.ApiInvoker.deserialize;
 
 public class MiscellaneousService {
-    ApiInvoker apiInvoker = ApiInvoker.getInstance();
+    TrackinApi trackinApi;
 
-    public ApiInvoker getInvoker() {
-        return apiInvoker;
+    MiscellaneousService(TrackinApi trackinApi) {
+        this.trackinApi = trackinApi;
     }
-
 
 
     public Subscription getOneSubscription(String api_key, Long sub_id) throws ApiException {
@@ -31,9 +28,9 @@ public class MiscellaneousService {
 
 
         try {
-            String response = apiInvoker.invokeAPI(path, "GET", queryParams, null, headerParams);
+            String response = trackinApi.invokeAPI(path, "GET", queryParams, null, headerParams);
             if (response != null) {
-                return (Subscription) deserialize(response, "", Subscription.class);
+                return (Subscription) trackinApi.deserialize(response, "", Subscription.class);
             } else {
                 return null;
             }
@@ -57,9 +54,9 @@ public class MiscellaneousService {
 
 
         try {
-            String response = apiInvoker.invokeAPI(path, "GET", queryParams, null, headerParams);
+            String response = trackinApi.invokeAPI(path, "GET", queryParams, null, headerParams);
             if (response != null) {
-                return (List<Country>) deserialize(response, "array", Country.class);
+                return (List<Country>) trackinApi.deserialize(response, "array", Country.class);
             } else {
                 return null;
             }
