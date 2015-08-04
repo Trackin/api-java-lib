@@ -22,7 +22,7 @@ public class CompanyService {
       this.trackinApi = trackinApi;
   }
 
-  public List<Company> getAll(String _for, String mode) throws ApiException {
+  public List<Company> getAll(String deliveryAddress, String mode) throws ApiException {
 
       // create path and map variables
       String path = "/service/api/json/1.1/companies".replaceAll("\\{format\\}", "json");
@@ -32,8 +32,8 @@ public class CompanyService {
       Map<String, String> headerParams = new HashMap<String, String>();
 
 
-      if (!"null".equals(valueOf(_for)))
-          queryParams.put("for", valueOf(_for));
+      if (!"null".equals(valueOf(deliveryAddress)))
+          queryParams.put("for", valueOf(deliveryAddress));
       if (!"null".equals(valueOf(mode)))
           queryParams.put("mode", valueOf(mode));
 
