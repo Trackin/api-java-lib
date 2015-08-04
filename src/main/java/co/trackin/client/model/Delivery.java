@@ -41,13 +41,9 @@ public class Delivery {
     private PaymentMethod paymentMethod = null;
     private Double rating = null;
     private String request = null;
-
-    public enum StatusEnum {
-        New, Assigned, Delivering, Delivered, Cancelled,
-    }
+    private StatusEnum status = null;
 
     ;
-    private StatusEnum status = null;
     private Boolean takeAway = null;
     private Double taxes = null;
     private Double tip = null;
@@ -69,7 +65,6 @@ public class Delivery {
         this.id = id;
     }
 
-
     /**
      * Time the delivery began (read-only)
      */
@@ -82,7 +77,6 @@ public class Delivery {
     public void setBegin(Date begin) {
         this.begin = begin;
     }
-
 
     /**
      * True if this is a catering order
@@ -97,7 +91,6 @@ public class Delivery {
         this.catering = catering;
     }
 
-
     /**
      **/
     @ApiModelProperty(required = false, value = "")
@@ -109,7 +102,6 @@ public class Delivery {
     public void setCompanyId(Long companyId) {
         this.companyId = companyId;
     }
-
 
     /**
      * Tell if the order was confirmed or not. Can be confirmed via an update or using the Trackin dashboard
@@ -124,7 +116,6 @@ public class Delivery {
         this.confirmationStatus = confirmationStatus;
     }
 
-
     /**
      * Order content
      */
@@ -138,7 +129,6 @@ public class Delivery {
         this.content = content;
     }
 
-
     /**
      **/
     @ApiModelProperty(required = false, value = "")
@@ -150,7 +140,6 @@ public class Delivery {
     public void setCost(Double cost) {
         this.cost = cost;
     }
-
 
     /**
      * Date of creation of the order, set to now by default. When set, it will be used to compute the due date
@@ -165,7 +154,6 @@ public class Delivery {
         this.created = created;
     }
 
-
     /**
      * This is only available for courier enabled subscription. Tell you if this is a courier pick-up delivery
      */
@@ -178,7 +166,6 @@ public class Delivery {
     public void setCourierDelivery(Boolean courierDelivery) {
         this.courierDelivery = courierDelivery;
     }
-
 
     /**
      * Fee paid by the customer for the delivery
@@ -193,7 +180,6 @@ public class Delivery {
         this.deliveryFee = deliveryFee;
     }
 
-
     /**
      * Id of the device to assign if needed
      */
@@ -206,7 +192,6 @@ public class Delivery {
     public void setDeviceId(Long deviceId) {
         this.deviceId = deviceId;
     }
-
 
     /**
      * This is the transport distance computed by google directions in meters
@@ -221,7 +206,6 @@ public class Delivery {
         this.distance = distance;
     }
 
-
     /**
      * Order due date. If not set, we will use the company's delivery zones to determine it
      */
@@ -234,7 +218,6 @@ public class Delivery {
     public void setDue(Date due) {
         this.due = due;
     }
-
 
     /**
      * Time the delivery ended (read-only)
@@ -249,7 +232,6 @@ public class Delivery {
         this.end = end;
     }
 
-
     /**
      * Id of the order/delivery in your system
      */
@@ -263,7 +245,6 @@ public class Delivery {
         this.thirdPartyId = thirdPartyId;
     }
 
-
     /**
      **/
     @ApiModelProperty(required = false, value = "")
@@ -275,7 +256,6 @@ public class Delivery {
     public void setInstructions(String instructions) {
         this.instructions = instructions;
     }
-
 
     /**
      * Delivery name, can be used to set delivery # or anything. Default is 'New order'
@@ -290,7 +270,6 @@ public class Delivery {
         this.name = name;
     }
 
-
     /**
      * This is only available for courier enabled subscription. Set to true if this delivery is going to be picked up by a courier
      */
@@ -303,7 +282,6 @@ public class Delivery {
     public void setNeedCourier(Boolean needCourier) {
         this.needCourier = needCourier;
     }
-
 
     /**
      * Set the origin name of the order. Default value is 'API'
@@ -318,7 +296,6 @@ public class Delivery {
         this.origin = origin;
     }
 
-
     /**
      * Has the order been paid?
      */
@@ -332,7 +309,6 @@ public class Delivery {
         this.paid = paid;
     }
 
-
     /**
      **/
     @ApiModelProperty(required = false, value = "")
@@ -344,7 +320,6 @@ public class Delivery {
     public void setPaymentMethod(PaymentMethod paymentMethod) {
         this.paymentMethod = paymentMethod;
     }
-
 
     /**
      * Customer rating /5. (read-only)
@@ -359,7 +334,6 @@ public class Delivery {
         this.rating = rating;
     }
 
-
     /**
      * Customer request about the order
      */
@@ -372,7 +346,6 @@ public class Delivery {
     public void setRequest(String request) {
         this.request = request;
     }
-
 
     /**
      * Will be set to 'New' when creating a delivery.
@@ -387,7 +360,6 @@ public class Delivery {
         this.status = status;
     }
 
-
     /**
      * true if it's a TakeAway order instead of classic delivery
      */
@@ -400,7 +372,6 @@ public class Delivery {
     public void setTakeAway(Boolean takeAway) {
         this.takeAway = takeAway;
     }
-
 
     /**
      * this is the total amount of taxes included in the total price
@@ -415,7 +386,6 @@ public class Delivery {
         this.taxes = taxes;
     }
 
-
     /**
      * this is the  amount of tip included in the total price
      */
@@ -428,7 +398,6 @@ public class Delivery {
     public void setTip(Double tip) {
         this.tip = tip;
     }
-
 
     /**
      *
@@ -443,7 +412,6 @@ public class Delivery {
         this.total = total;
     }
 
-
     /**
      * This is transport duration computed by google directions in seconds
      */
@@ -457,7 +425,6 @@ public class Delivery {
         this.time = time;
     }
 
-
     /**
      * Read-Only, this is the review a user left you after the delivery was made
      */
@@ -470,7 +437,6 @@ public class Delivery {
     public void setUserReview(String userReview) {
         this.userReview = userReview;
     }
-
 
     /**
      * Information about the customer
@@ -533,5 +499,9 @@ public class Delivery {
         sb.append("  webhookUrl: ").append(webhookUrl).append("\n");
         sb.append("}\n");
         return sb.toString();
+    }
+
+    public enum StatusEnum {
+        New, Assigned, Delivering, Delivered, Cancelled,
     }
 }

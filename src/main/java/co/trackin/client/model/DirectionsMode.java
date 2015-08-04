@@ -16,7 +16,7 @@ public enum DirectionsMode {
     private int id;
     private String value;
 
-    private DirectionsMode(int id, String value){
+    private DirectionsMode(int id, String value) {
         this.id = id;
         this.value = value;
     }
@@ -25,5 +25,5 @@ public enum DirectionsMode {
     public int toInt() { return id; }
 
     @Override
-    public String toString(){ return value; }
+    public String toString() { return value; }
 }

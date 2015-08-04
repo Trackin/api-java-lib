@@ -2,7 +2,6 @@ package co.trackin.client.model;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.sun.istack.internal.NotNull;
 import com.wordnik.swagger.annotations.ApiModel;
 import com.wordnik.swagger.annotations.ApiModelProperty;
 
@@ -28,13 +27,13 @@ public class Line {
     private Double total = null;
 
 
-    public Line(String label, Double price, int quantity){
-        this.label=label;
+    public Line(String label, Double price, int quantity) {
+        this.label = label;
         this.price = price;
         this.quantity = quantity;
     }
 
-    Line(){
+    Line() {
     }
 
     /**

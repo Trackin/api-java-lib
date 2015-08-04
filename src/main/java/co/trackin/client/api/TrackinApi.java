@@ -18,13 +18,6 @@ import java.util.List;
 import java.util.Map;
 
 public class TrackinApi {
-    private String host = "https://backend.app.trackin.co/";
-    private String ApiKey;
-    private Long SubId;
-    private Map<String, Client> hostMap = new HashMap<String, Client>();
-    private Map<String, String> defaultHeaderMap = new HashMap<String, String>();
-    private boolean isDebug = false;
-
     public CompanyService companies;
     public ContactService contacts;
     public CustomerService customers;
@@ -32,8 +25,14 @@ public class TrackinApi {
     public DeliveryZoneService deliveryZones;
     public DeviceService devices;
     public MiscellaneousService miscellaneous;
+    private String host = "https://backend.app.trackin.co/";
+    private String ApiKey;
+    private Long SubId;
+    private Map<String, Client> hostMap = new HashMap<String, Client>();
+    private Map<String, String> defaultHeaderMap = new HashMap<String, String>();
+    private boolean isDebug = false;
 
-    public TrackinApi(String apiKey, Long subId){
+    public TrackinApi(String apiKey, Long subId) {
         this.ApiKey = apiKey;
         this.SubId = subId;
         this.companies = new CompanyService(this);
@@ -45,7 +44,7 @@ public class TrackinApi {
         this.miscellaneous = new MiscellaneousService(this);
     }
 
-    public TrackinApi(String apiKey, Long subId, String host){
+    public TrackinApi(String apiKey, Long subId, String host) {
         this(apiKey, subId);
         this.host = host;
     }
@@ -108,7 +107,7 @@ public class TrackinApi {
         }
     }
 
-    public String getHost(){
+    public String getHost() {
         return this.host;
     }
 
@@ -133,10 +132,10 @@ public class TrackinApi {
 
         Builder builder = client.resource(host + path + querystring).accept("application/json");
 
-        if (ApiKey == null || ApiKey.isEmpty()){
+        if (ApiKey == null || ApiKey.isEmpty()) {
             throw new ApiException(1, "You must set an api key [using ApiInvoker.setApiKey()]");
         }
-        if (SubId == null){
+        if (SubId == null) {
             throw new ApiException(1, "You must set an api key [using ApiInvoker.setSubId()]");
         }
         headerParams.put("api_key", ApiKey);
@@ -166,7 +165,7 @@ public class TrackinApi {
             if (body == null)
                 response = builder.put(ClientResponse.class, serialize(body));
             else {
-                    response = builder.type(contentType).put(ClientResponse.class, serialize(body));
+                response = builder.type(contentType).put(ClientResponse.class, serialize(body));
             }
         } else if ("DELETE".equals(method)) {
             if (body == null)

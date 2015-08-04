@@ -28,6 +28,20 @@ public class DeliveryFormUpdate {
     private Double total = null;
     private String webhookUrl;
 
+    public DeliveryFormUpdate(Delivery delivery) {
+        this.confirmationStatus = delivery.getConfirmationStatus();
+        this.content = delivery.getContent();
+        this.instructions = delivery.getInstructions();
+        this.paid = delivery.getPaid();
+        this.paymentMethod = delivery.getPaymentMethod();
+        this.request = delivery.getRequest();
+        this.taxes = delivery.getTaxes();
+        this.tip = delivery.getTip();
+        this.total = delivery.getTotal();
+        this.webhookUrl = delivery.getWebhookUrl();
+
+    }
+
     /**
      * Tell if the order was confirmed or not. Can be confirmed via an update or using the Trackin dashboard
      */
@@ -40,7 +54,6 @@ public class DeliveryFormUpdate {
     public void setConfirmationStatus(Boolean confirmationStatus) {
         this.confirmationStatus = confirmationStatus;
     }
-
 
     /**
      * Order content
@@ -55,7 +68,6 @@ public class DeliveryFormUpdate {
         this.content = content;
     }
 
-
     /**
      **/
     @ApiModelProperty(required = false, value = "")
@@ -67,7 +79,6 @@ public class DeliveryFormUpdate {
     public void setInstructions(String instructions) {
         this.instructions = instructions;
     }
-
 
     /**
      * Has the order been paid?
@@ -82,7 +93,6 @@ public class DeliveryFormUpdate {
         this.paid = paid;
     }
 
-
     /**
      **/
     @ApiModelProperty(required = false, value = "")
@@ -94,7 +104,6 @@ public class DeliveryFormUpdate {
     public void setPaymentMethod(PaymentMethod paymentMethod) {
         this.paymentMethod = paymentMethod;
     }
-
 
     /**
      * Customer request about the order
@@ -109,7 +118,6 @@ public class DeliveryFormUpdate {
         this.request = request;
     }
 
-
     /**
      * this is the total amount of taxes included in the total price
      */
@@ -123,7 +131,6 @@ public class DeliveryFormUpdate {
         this.taxes = taxes;
     }
 
-
     /**
      * this is the  amount of tip included in the total price
      */
@@ -136,8 +143,6 @@ public class DeliveryFormUpdate {
     public void setTip(Double tip) {
         this.tip = tip;
     }
-
-
 
     /**
      *
@@ -160,21 +165,6 @@ public class DeliveryFormUpdate {
     public String getWebhookUrl() { return webhookUrl; }
 
     public void setWebhookUrl(String webhookUrl) {this.webhookUrl = webhookUrl;}
-
-
-    public DeliveryFormUpdate(Delivery delivery){
-        this.confirmationStatus = delivery.getConfirmationStatus();
-        this.content = delivery.getContent();
-        this.instructions = delivery.getInstructions();
-        this.paid = delivery.getPaid();
-        this.paymentMethod = delivery.getPaymentMethod();
-        this.request = delivery.getRequest();
-        this.taxes = delivery.getTaxes();
-        this.tip = delivery.getTip();
-        this.total = delivery.getTotal();
-        this.webhookUrl = delivery.getWebhookUrl();
-
-    }
 
     @Override
     public String toString() {

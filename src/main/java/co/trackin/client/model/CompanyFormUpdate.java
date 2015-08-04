@@ -45,412 +45,6 @@ public class CompanyFormUpdate {
     private String yelp = null;
 
 
-    /**
-     * Do the drivers' app assigned to this company start assigned delivery automatically?
-     */
-    @ApiModelProperty(required = false, value = "Do the drivers' app assigned to this company start assigned delivery automatically?")
-    @JsonProperty("allowAutostart")
-    public Boolean getAllowAutostart() {
-        return allowAutostart;
-    }
-
-    public void setAllowAutostart(Boolean allowAutostart) {
-        this.allowAutostart = allowAutostart;
-    }
-
-
-    /**
-     * true
-     */
-    @ApiModelProperty(required = false, value = "true")
-    @JsonProperty("allowAutostop")
-    public Boolean getAllowAutostop() {
-        return allowAutostop;
-    }
-
-    public void setAllowAutostop(Boolean allowAutostop) {
-        this.allowAutostop = allowAutostop;
-    }
-
-
-    /**
-     * Custom field for the email sent to the customer when a delivery starts
-     */
-    @ApiModelProperty(required = false, value = "Custom field for the email sent to the customer when a delivery starts")
-    @JsonProperty("customEmailField1")
-    public String getCustomEmailField1() {
-        return customEmailField1;
-    }
-
-    public void setCustomEmailField1(String customEmailField1) {
-        this.customEmailField1 = customEmailField1;
-    }
-
-
-    /**
-     * See customEmailField1
-     */
-    @ApiModelProperty(required = false, value = "See customEmailField1")
-    @JsonProperty("customEmailField2")
-    public String getCustomEmailField2() {
-        return customEmailField2;
-    }
-
-    public void setCustomEmailField2(String customEmailField2) {
-        this.customEmailField2 = customEmailField2;
-    }
-
-
-    /**
-     * See customEmailField1
-     */
-    @ApiModelProperty(required = false, value = "See customEmailField1")
-    @JsonProperty("customEmailField3")
-    public String getCustomEmailField3() {
-        return customEmailField3;
-    }
-
-    public void setCustomEmailField3(String customEmailField3) {
-        this.customEmailField3 = customEmailField3;
-    }
-
-
-    /**
-     * See customEmailField1
-     */
-    @ApiModelProperty(required = false, value = "See customEmailField1")
-    @JsonProperty("customEmailField4")
-    public String getCustomEmailField4() {
-        return customEmailField4;
-    }
-
-    public void setCustomEmailField4(String customEmailField4) {
-        this.customEmailField4 = customEmailField4;
-    }
-
-
-    /**
-     * See Custom title for the email sent to the customer when a delivery starts
-     */
-    @ApiModelProperty(required = false, value = "See Custom title for the email sent to the customer when a delivery starts")
-    @JsonProperty("customEmailTitle1")
-    public String getCustomEmailTitle1() {
-        return customEmailTitle1;
-    }
-
-    public void setCustomEmailTitle1(String customEmailTitle1) {
-        this.customEmailTitle1 = customEmailTitle1;
-    }
-
-
-    /**
-     * See customEmailTitle1
-     */
-    @ApiModelProperty(required = false, value = "See customEmailTitle1")
-    @JsonProperty("customEmailTitle2")
-    public String getCustomEmailTitle2() {
-        return customEmailTitle2;
-    }
-
-    public void setCustomEmailTitle2(String customEmailTitle2) {
-        this.customEmailTitle2 = customEmailTitle2;
-    }
-
-
-    /**
-     * See customEmailTitle1
-     */
-    @ApiModelProperty(required = false, value = "See customEmailTitle1")
-    @JsonProperty("customEmailTitle3")
-    public String getCustomEmailTitle3() {
-        return customEmailTitle3;
-    }
-
-    public void setCustomEmailTitle3(String customEmailTitle3) {
-        this.customEmailTitle3 = customEmailTitle3;
-    }
-
-
-    /**
-     * See customEmailTitle1
-     */
-    @ApiModelProperty(required = false, value = "See customEmailTitle1")
-    @JsonProperty("customEmailTitle4")
-    public String getCustomEmailTitle4() {
-        return customEmailTitle4;
-    }
-
-    public void setCustomEmailTitle4(String customEmailTitle4) {
-        this.customEmailTitle4 = customEmailTitle4;
-    }
-
-
-    /**
-     * Custom text displayed when the customer tracks its delivery
-     */
-    @ApiModelProperty(required = false, value = "Custom text displayed when the customer tracks its delivery")
-    @JsonProperty("customFtFollowText")
-    public String getCustomFtFollowText() {
-        return customFtFollowText;
-    }
-
-    public void setCustomFtFollowText(String customFtFollowText) {
-        this.customFtFollowText = customFtFollowText;
-    }
-
-
-    /**
-     * Should we use highways when computing directions
-     */
-    @ApiModelProperty(required = false, value = "Should we use highways when computing directions")
-    @JsonProperty("directionsAvoidHighways")
-    public Boolean getDirectionsAvoidHighways() {
-        return directionsAvoidHighways;
-    }
-
-    public void setDirectionsAvoidHighways(Boolean directionsAvoidHighways) {
-        this.directionsAvoidHighways = directionsAvoidHighways;
-    }
-
-
-    /**
-     * Should we use toll roads when computing directions
-     */
-    @ApiModelProperty(required = false, value = "Should we use toll roads when computing directions")
-    @JsonProperty("directionsAvoidTolls")
-    public Boolean getDirectionsAvoidTolls() {
-        return directionsAvoidTolls;
-    }
-
-    public void setDirectionsAvoidTolls(Boolean directionsAvoidTolls) {
-        this.directionsAvoidTolls = directionsAvoidTolls;
-    }
-
-
-    /**
-     * What transport mode should we use to compute directions?
-     */
-    @ApiModelProperty(required = false, value = "What transport mode should we use to compute directions?")
-    @JsonProperty("directionsMode")
-    public DirectionsMode getDirectionsMode() {
-        return directionsMode;
-    }
-
-    public void setDirectionsMode(DirectionsMode directionsMode) {
-        this.directionsMode = directionsMode;
-    }
-
-
-    /**
-     * false
-     */
-    @ApiModelProperty(required = false, value = "false")
-    @JsonProperty("enableGeolocationWarning")
-    public Boolean getEnableGeolocationWarning() {
-        return enableGeolocationWarning;
-    }
-
-    public void setEnableGeolocationWarning(Boolean enableGeolocationWarning) {
-        this.enableGeolocationWarning = enableGeolocationWarning;
-    }
-
-
-    /**
-     * company's Facebook page
-     */
-    @ApiModelProperty(required = false, value = "company's Facebook page")
-    @JsonProperty("facebook")
-    public String getFacebook() {
-        return facebook;
-    }
-
-    public void setFacebook(String facebook) {
-        this.facebook = facebook;
-    }
-
-
-    /**
-     * company's G+ page
-     */
-    @ApiModelProperty(required = false, value = "company's G+ page")
-    @JsonProperty("google")
-    public String getGoogle() {
-        return google;
-    }
-
-    public void setGoogle(String google) {
-        this.google = google;
-    }
-
-
-    /**
-     * link to restaurant's logo
-     */
-    @ApiModelProperty(required = false, value = "link to restaurant's logo")
-    @JsonProperty("image")
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-
-
-    /**
-     * en
-     */
-    @ApiModelProperty(required = false, value = "en")
-    @JsonProperty("languageCode")
-    public String getLanguageCode() {
-        return languageCode;
-    }
-
-    public void setLanguageCode(String languageCode) {
-        this.languageCode = languageCode;
-    }
-
-
-    /**
-     * The name of the company
-     */
-    @ApiModelProperty(required = false, value = "The name of the company")
-    @JsonProperty("name")
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-
-    /**
-     * Do you want to notify your clients by email?
-     */
-    @ApiModelProperty(required = false, value = "Do you want to notify your clients by email?")
-    @JsonProperty("notifyByEmail")
-    public Boolean getNotifyByEmail() {
-        return notifyByEmail;
-    }
-
-    public void setNotifyByEmail(Boolean notifyByEmail) {
-        this.notifyByEmail = notifyByEmail;
-    }
-
-
-    /**
-     * Do you want to notify your clients by SMS?
-     */
-    @ApiModelProperty(required = false, value = "Do you want to notify your clients by SMS?")
-    @JsonProperty("notifyBySms")
-    public Boolean getNotifyBySms() {
-        return notifyBySms;
-    }
-
-    public void setNotifyBySms(Boolean notifyBySms) {
-        this.notifyBySms = notifyBySms;
-    }
-
-
-    /**
-     * true
-     */
-    @ApiModelProperty(required = false, value = "true")
-    @JsonProperty("sendApologyEmail")
-    public Boolean getSendApologyEmail() {
-        return sendApologyEmail;
-    }
-
-    public void setSendApologyEmail(Boolean sendApologyEmail) {
-        this.sendApologyEmail = sendApologyEmail;
-    }
-
-
-    /**
-     * true
-     */
-    @ApiModelProperty(required = false, value = "true")
-    @JsonProperty("sendThankYouEmail")
-    public Boolean getSendThankYouEmail() {
-        return sendThankYouEmail;
-    }
-
-    public void setSendThankYouEmail(Boolean sendThankYouEmail) {
-        this.sendThankYouEmail = sendThankYouEmail;
-    }
-
-
-    /**
-     * false
-     */
-    @ApiModelProperty(required = false, value = "false")
-    @JsonProperty("skipLoadBalancing")
-    public Boolean getSkipLoadBalancing() {
-        return skipLoadBalancing;
-    }
-
-    public void setSkipLoadBalancing(Boolean skipLoadBalancing) {
-        this.skipLoadBalancing = skipLoadBalancing;
-    }
-
-
-    /**
-     * Timezone for the company(Europe/Paris, America/Los_Angeles...)
-     */
-    @ApiModelProperty(required = false, value = "Timezone for the company(Europe/Paris, America/Los_Angeles...)")
-    @JsonProperty("timezone")
-    public String getTimezone() {
-        return timezone;
-    }
-
-    public void setTimezone(String timezone) {
-        this.timezone = timezone;
-    }
-
-
-    /**
-     * company's twitter page
-     */
-    @ApiModelProperty(required = false, value = "company's twitter page")
-    @JsonProperty("twitter")
-    public String getTwitter() {
-        return twitter;
-    }
-
-    public void setTwitter(String twitter) {
-        this.twitter = twitter;
-    }
-
-
-    /**
-     * company's website
-     */
-    @ApiModelProperty(required = false, value = "company's website")
-    @JsonProperty("website")
-    public String getWebsite() {
-        return website;
-    }
-
-    public void setWebsite(String website) {
-        this.website = website;
-    }
-
-
-    /**
-     * company's Yelp page
-     */
-    @ApiModelProperty(required = false, value = "company's Yelp page")
-    @JsonProperty("yelp")
-    public String getYelp() {
-        return yelp;
-    }
-
-    public void setYelp(String yelp) {
-        this.yelp = yelp;
-    }
-
-
     public CompanyFormUpdate(Company company) {
         this.allowAutostart = company.getAllowAutostart();
         this.allowAutostop = company.getAllowAutostop();
@@ -482,6 +76,383 @@ public class CompanyFormUpdate {
         this.website = company.getWebsite();
         this.yelp = company.getYelp();
 
+    }
+
+    /**
+     * Do the drivers' app assigned to this company start assigned delivery automatically?
+     */
+    @ApiModelProperty(required = false, value = "Do the drivers' app assigned to this company start assigned delivery automatically?")
+    @JsonProperty("allowAutostart")
+    public Boolean getAllowAutostart() {
+        return allowAutostart;
+    }
+
+    public void setAllowAutostart(Boolean allowAutostart) {
+        this.allowAutostart = allowAutostart;
+    }
+
+    /**
+     * true
+     */
+    @ApiModelProperty(required = false, value = "true")
+    @JsonProperty("allowAutostop")
+    public Boolean getAllowAutostop() {
+        return allowAutostop;
+    }
+
+    public void setAllowAutostop(Boolean allowAutostop) {
+        this.allowAutostop = allowAutostop;
+    }
+
+    /**
+     * Custom field for the email sent to the customer when a delivery starts
+     */
+    @ApiModelProperty(required = false, value = "Custom field for the email sent to the customer when a delivery starts")
+    @JsonProperty("customEmailField1")
+    public String getCustomEmailField1() {
+        return customEmailField1;
+    }
+
+    public void setCustomEmailField1(String customEmailField1) {
+        this.customEmailField1 = customEmailField1;
+    }
+
+    /**
+     * See customEmailField1
+     */
+    @ApiModelProperty(required = false, value = "See customEmailField1")
+    @JsonProperty("customEmailField2")
+    public String getCustomEmailField2() {
+        return customEmailField2;
+    }
+
+    public void setCustomEmailField2(String customEmailField2) {
+        this.customEmailField2 = customEmailField2;
+    }
+
+    /**
+     * See customEmailField1
+     */
+    @ApiModelProperty(required = false, value = "See customEmailField1")
+    @JsonProperty("customEmailField3")
+    public String getCustomEmailField3() {
+        return customEmailField3;
+    }
+
+    public void setCustomEmailField3(String customEmailField3) {
+        this.customEmailField3 = customEmailField3;
+    }
+
+    /**
+     * See customEmailField1
+     */
+    @ApiModelProperty(required = false, value = "See customEmailField1")
+    @JsonProperty("customEmailField4")
+    public String getCustomEmailField4() {
+        return customEmailField4;
+    }
+
+    public void setCustomEmailField4(String customEmailField4) {
+        this.customEmailField4 = customEmailField4;
+    }
+
+    /**
+     * See Custom title for the email sent to the customer when a delivery starts
+     */
+    @ApiModelProperty(required = false, value = "See Custom title for the email sent to the customer when a delivery starts")
+    @JsonProperty("customEmailTitle1")
+    public String getCustomEmailTitle1() {
+        return customEmailTitle1;
+    }
+
+    public void setCustomEmailTitle1(String customEmailTitle1) {
+        this.customEmailTitle1 = customEmailTitle1;
+    }
+
+    /**
+     * See customEmailTitle1
+     */
+    @ApiModelProperty(required = false, value = "See customEmailTitle1")
+    @JsonProperty("customEmailTitle2")
+    public String getCustomEmailTitle2() {
+        return customEmailTitle2;
+    }
+
+    public void setCustomEmailTitle2(String customEmailTitle2) {
+        this.customEmailTitle2 = customEmailTitle2;
+    }
+
+    /**
+     * See customEmailTitle1
+     */
+    @ApiModelProperty(required = false, value = "See customEmailTitle1")
+    @JsonProperty("customEmailTitle3")
+    public String getCustomEmailTitle3() {
+        return customEmailTitle3;
+    }
+
+    public void setCustomEmailTitle3(String customEmailTitle3) {
+        this.customEmailTitle3 = customEmailTitle3;
+    }
+
+    /**
+     * See customEmailTitle1
+     */
+    @ApiModelProperty(required = false, value = "See customEmailTitle1")
+    @JsonProperty("customEmailTitle4")
+    public String getCustomEmailTitle4() {
+        return customEmailTitle4;
+    }
+
+    public void setCustomEmailTitle4(String customEmailTitle4) {
+        this.customEmailTitle4 = customEmailTitle4;
+    }
+
+    /**
+     * Custom text displayed when the customer tracks its delivery
+     */
+    @ApiModelProperty(required = false, value = "Custom text displayed when the customer tracks its delivery")
+    @JsonProperty("customFtFollowText")
+    public String getCustomFtFollowText() {
+        return customFtFollowText;
+    }
+
+    public void setCustomFtFollowText(String customFtFollowText) {
+        this.customFtFollowText = customFtFollowText;
+    }
+
+    /**
+     * Should we use highways when computing directions
+     */
+    @ApiModelProperty(required = false, value = "Should we use highways when computing directions")
+    @JsonProperty("directionsAvoidHighways")
+    public Boolean getDirectionsAvoidHighways() {
+        return directionsAvoidHighways;
+    }
+
+    public void setDirectionsAvoidHighways(Boolean directionsAvoidHighways) {
+        this.directionsAvoidHighways = directionsAvoidHighways;
+    }
+
+    /**
+     * Should we use toll roads when computing directions
+     */
+    @ApiModelProperty(required = false, value = "Should we use toll roads when computing directions")
+    @JsonProperty("directionsAvoidTolls")
+    public Boolean getDirectionsAvoidTolls() {
+        return directionsAvoidTolls;
+    }
+
+    public void setDirectionsAvoidTolls(Boolean directionsAvoidTolls) {
+        this.directionsAvoidTolls = directionsAvoidTolls;
+    }
+
+    /**
+     * What transport mode should we use to compute directions?
+     */
+    @ApiModelProperty(required = false, value = "What transport mode should we use to compute directions?")
+    @JsonProperty("directionsMode")
+    public DirectionsMode getDirectionsMode() {
+        return directionsMode;
+    }
+
+    public void setDirectionsMode(DirectionsMode directionsMode) {
+        this.directionsMode = directionsMode;
+    }
+
+    /**
+     * false
+     */
+    @ApiModelProperty(required = false, value = "false")
+    @JsonProperty("enableGeolocationWarning")
+    public Boolean getEnableGeolocationWarning() {
+        return enableGeolocationWarning;
+    }
+
+    public void setEnableGeolocationWarning(Boolean enableGeolocationWarning) {
+        this.enableGeolocationWarning = enableGeolocationWarning;
+    }
+
+    /**
+     * company's Facebook page
+     */
+    @ApiModelProperty(required = false, value = "company's Facebook page")
+    @JsonProperty("facebook")
+    public String getFacebook() {
+        return facebook;
+    }
+
+    public void setFacebook(String facebook) {
+        this.facebook = facebook;
+    }
+
+    /**
+     * company's G+ page
+     */
+    @ApiModelProperty(required = false, value = "company's G+ page")
+    @JsonProperty("google")
+    public String getGoogle() {
+        return google;
+    }
+
+    public void setGoogle(String google) {
+        this.google = google;
+    }
+
+    /**
+     * link to restaurant's logo
+     */
+    @ApiModelProperty(required = false, value = "link to restaurant's logo")
+    @JsonProperty("image")
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    /**
+     * en
+     */
+    @ApiModelProperty(required = false, value = "en")
+    @JsonProperty("languageCode")
+    public String getLanguageCode() {
+        return languageCode;
+    }
+
+    public void setLanguageCode(String languageCode) {
+        this.languageCode = languageCode;
+    }
+
+    /**
+     * The name of the company
+     */
+    @ApiModelProperty(required = false, value = "The name of the company")
+    @JsonProperty("name")
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * Do you want to notify your clients by email?
+     */
+    @ApiModelProperty(required = false, value = "Do you want to notify your clients by email?")
+    @JsonProperty("notifyByEmail")
+    public Boolean getNotifyByEmail() {
+        return notifyByEmail;
+    }
+
+    public void setNotifyByEmail(Boolean notifyByEmail) {
+        this.notifyByEmail = notifyByEmail;
+    }
+
+    /**
+     * Do you want to notify your clients by SMS?
+     */
+    @ApiModelProperty(required = false, value = "Do you want to notify your clients by SMS?")
+    @JsonProperty("notifyBySms")
+    public Boolean getNotifyBySms() {
+        return notifyBySms;
+    }
+
+    public void setNotifyBySms(Boolean notifyBySms) {
+        this.notifyBySms = notifyBySms;
+    }
+
+    /**
+     * true
+     */
+    @ApiModelProperty(required = false, value = "true")
+    @JsonProperty("sendApologyEmail")
+    public Boolean getSendApologyEmail() {
+        return sendApologyEmail;
+    }
+
+    public void setSendApologyEmail(Boolean sendApologyEmail) {
+        this.sendApologyEmail = sendApologyEmail;
+    }
+
+    /**
+     * true
+     */
+    @ApiModelProperty(required = false, value = "true")
+    @JsonProperty("sendThankYouEmail")
+    public Boolean getSendThankYouEmail() {
+        return sendThankYouEmail;
+    }
+
+    public void setSendThankYouEmail(Boolean sendThankYouEmail) {
+        this.sendThankYouEmail = sendThankYouEmail;
+    }
+
+    /**
+     * false
+     */
+    @ApiModelProperty(required = false, value = "false")
+    @JsonProperty("skipLoadBalancing")
+    public Boolean getSkipLoadBalancing() {
+        return skipLoadBalancing;
+    }
+
+    public void setSkipLoadBalancing(Boolean skipLoadBalancing) {
+        this.skipLoadBalancing = skipLoadBalancing;
+    }
+
+    /**
+     * Timezone for the company(Europe/Paris, America/Los_Angeles...)
+     */
+    @ApiModelProperty(required = false, value = "Timezone for the company(Europe/Paris, America/Los_Angeles...)")
+    @JsonProperty("timezone")
+    public String getTimezone() {
+        return timezone;
+    }
+
+    public void setTimezone(String timezone) {
+        this.timezone = timezone;
+    }
+
+    /**
+     * company's twitter page
+     */
+    @ApiModelProperty(required = false, value = "company's twitter page")
+    @JsonProperty("twitter")
+    public String getTwitter() {
+        return twitter;
+    }
+
+    public void setTwitter(String twitter) {
+        this.twitter = twitter;
+    }
+
+    /**
+     * company's website
+     */
+    @ApiModelProperty(required = false, value = "company's website")
+    @JsonProperty("website")
+    public String getWebsite() {
+        return website;
+    }
+
+    public void setWebsite(String website) {
+        this.website = website;
+    }
+
+    /**
+     * company's Yelp page
+     */
+    @ApiModelProperty(required = false, value = "company's Yelp page")
+    @JsonProperty("yelp")
+    public String getYelp() {
+        return yelp;
+    }
+
+    public void setYelp(String yelp) {
+        this.yelp = yelp;
     }
 
     @Override

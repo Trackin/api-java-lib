@@ -42,9 +42,6 @@ public class DeliveryForm {
     private Double total = null;
     private Contact recipient = null;
     private String webhookUrl;
-    public enum StatusEnum {
-        New, Assigned, Delivering, Delivered, Cancelled,
-    }
 
     /**
      * True if this is a catering order
@@ -59,7 +56,6 @@ public class DeliveryForm {
         this.catering = catering;
     }
 
-
     /**
      **/
     @ApiModelProperty(required = false, value = "")
@@ -71,7 +67,6 @@ public class DeliveryForm {
     public void setCompanyId(Long companyId) {
         this.companyId = companyId;
     }
-
 
     /**
      * Tell if the order was confirmed or not. Can be confirmed via an update or using the Trackin dashboard
@@ -86,7 +81,6 @@ public class DeliveryForm {
         this.confirmationStatus = confirmationStatus;
     }
 
-
     /**
      * Order content
      */
@@ -100,7 +94,6 @@ public class DeliveryForm {
         this.content = content;
     }
 
-
     /**
      **/
     @ApiModelProperty(required = false, value = "")
@@ -112,7 +105,6 @@ public class DeliveryForm {
     public void setCost(Double cost) {
         this.cost = cost;
     }
-
 
     /**
      * Date of creation of the order, set to now by default. When set, it will be used to compute the due date
@@ -127,7 +119,6 @@ public class DeliveryForm {
         this.created = created;
     }
 
-
     /**
      * This is only available for courier enabled subscription. Tell you if this is a courier pick-up delivery
      */
@@ -140,7 +131,6 @@ public class DeliveryForm {
     public void setCourierDelivery(Boolean courierDelivery) {
         this.courierDelivery = courierDelivery;
     }
-
 
     /**
      * Fee paid by the customer for the delivery
@@ -155,7 +145,6 @@ public class DeliveryForm {
         this.deliveryFee = deliveryFee;
     }
 
-
     /**
      * Id of the device to assign if needed
      */
@@ -168,7 +157,6 @@ public class DeliveryForm {
     public void setDeviceId(Long deviceId) {
         this.deviceId = deviceId;
     }
-
 
     /**
      * Order due date. If not set, we will use the company's delivery zones to determine it
@@ -183,7 +171,6 @@ public class DeliveryForm {
         this.due = due;
     }
 
-
     /**
      * Id of the order/delivery in your system
      */
@@ -197,7 +184,6 @@ public class DeliveryForm {
         this.thirdPartyId = thirdPartyId;
     }
 
-
     /**
      **/
     @ApiModelProperty(required = false, value = "")
@@ -209,7 +195,6 @@ public class DeliveryForm {
     public void setInstructions(String instructions) {
         this.instructions = instructions;
     }
-
 
     /**
      * Delivery name, can be used to set delivery # or anything. Default is 'New order'
@@ -224,7 +209,6 @@ public class DeliveryForm {
         this.name = name;
     }
 
-
     /**
      * This is only available for courier enabled subscription. Set to true if this delivery is going to be picked up by a courier
      */
@@ -237,7 +221,6 @@ public class DeliveryForm {
     public void setNeedCourier(Boolean needCourier) {
         this.needCourier = needCourier;
     }
-
 
     /**
      * Set the origin name of the order. Default value is 'API'
@@ -252,7 +235,6 @@ public class DeliveryForm {
         this.origin = origin;
     }
 
-
     /**
      * Has the order been paid?
      */
@@ -266,7 +248,6 @@ public class DeliveryForm {
         this.paid = paid;
     }
 
-
     /**
      **/
     @ApiModelProperty(required = false, value = "")
@@ -278,7 +259,6 @@ public class DeliveryForm {
     public void setPaymentMethod(PaymentMethod paymentMethod) {
         this.paymentMethod = paymentMethod;
     }
-
 
     /**
      * Customer request about the order
@@ -293,7 +273,6 @@ public class DeliveryForm {
         this.request = request;
     }
 
-
     /**
      * Will be set to 'New' when creating a delivery.
      */
@@ -306,7 +285,6 @@ public class DeliveryForm {
     public void setStatus(StatusEnum status) {
         this.status = status;
     }
-
 
     /**
      * true if it's a TakeAway order instead of classic delivery
@@ -321,7 +299,6 @@ public class DeliveryForm {
         this.takeAway = takeAway;
     }
 
-
     /**
      * this is the total amount of taxes included in the total price
      */
@@ -334,7 +311,6 @@ public class DeliveryForm {
     public void setTaxes(Double taxes) {
         this.taxes = taxes;
     }
-
 
     /**
      * this is the  amount of tip included in the total price
@@ -349,7 +325,6 @@ public class DeliveryForm {
         this.tip = tip;
     }
 
-
     /**
      *
      **/
@@ -362,7 +337,6 @@ public class DeliveryForm {
     public void setTotal(Double total) {
         this.total = total;
     }
-
 
     /**
      * Information about the customer
@@ -385,7 +359,6 @@ public class DeliveryForm {
     public String getWebhookUrl() { return webhookUrl; }
 
     public void setWebhookUrl(String webhookUrl) {this.webhookUrl = webhookUrl;}
-
 
     @Override
     public String toString() {
@@ -419,5 +392,10 @@ public class DeliveryForm {
         sb.append("  webhookUrl: ").append(webhookUrl).append("\n");
         sb.append("}\n");
         return sb.toString();
+    }
+
+
+    public enum StatusEnum {
+        New, Assigned, Delivering, Delivered, Cancelled,
     }
 }

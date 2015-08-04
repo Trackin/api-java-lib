@@ -12,161 +12,155 @@ import java.util.Map;
 import static java.lang.String.valueOf;
 
 public class CompanyService {
-  TrackinApi trackinApi;
+    TrackinApi trackinApi;
 
-  CompanyService(TrackinApi trackinApi) {
-      this.trackinApi = trackinApi;
-  }
+    CompanyService(TrackinApi trackinApi) {
+        this.trackinApi = trackinApi;
+    }
 
-  public enum OrderType{
-      Delivery("delivery"),
-      CateringDelivery("catering"),
-      TakeAway("takeAway");
+    public List<Company> getAll(String deliveryAddress, OrderType orderType) throws ApiException {
 
-      private String value;
+        // create path and map variables
+        String path = "/service/api/json/1.1/companies".replaceAll("\\{format\\}", "json");
 
-      OrderType(String value){ this.value = value; }
-
-      @Override
-      public String toString(){ return value; }
-  }
-
-  public List<Company> getAll(String deliveryAddress, OrderType orderType) throws ApiException {
-
-      // create path and map variables
-      String path = "/service/api/json/1.1/companies".replaceAll("\\{format\\}", "json");
-
-      // query params
-      Map<String, String> queryParams = new HashMap<String, String>();
-      Map<String, String> headerParams = new HashMap<String, String>();
+        // query params
+        Map<String, String> queryParams = new HashMap<String, String>();
+        Map<String, String> headerParams = new HashMap<String, String>();
 
 
-      if (deliveryAddress != null)
-          queryParams.put("for", valueOf(deliveryAddress));
-      if (orderType != null)
-          queryParams.put("mode", valueOf(orderType));
+        if (deliveryAddress != null)
+            queryParams.put("for", valueOf(deliveryAddress));
+        if (orderType != null)
+            queryParams.put("mode", valueOf(orderType));
 
 
-      try {
-          String response = trackinApi.invokeAPI(path, "GET", queryParams, null, headerParams);
-          if (response != null) {
-              return (List<Company>) trackinApi.deserialize(response, "array", Company.class);
-          } else {
-              return null;
-          }
-      } catch (ApiException ex) {
-          if (ex.getCode() == 404) {
-              return null;
-          } else {
-              throw ex;
-          }
-      }
-  }
-  
-    
-  public Company create(CompanyForm body) throws ApiException {
+        try {
+            String response = trackinApi.invokeAPI(path, "GET", queryParams, null, headerParams);
+            if (response != null) {
+                return (List<Company>) trackinApi.deserialize(response, "array", Company.class);
+            } else {
+                return null;
+            }
+        } catch (ApiException ex) {
+            if (ex.getCode() == 404) {
+                return null;
+            } else {
+                throw ex;
+            }
+        }
+    }
+
+    public Company create(CompanyForm body) throws ApiException {
 
 
-      // create path and map variables
-      String path = "/service/api/json/1.1/companies".replaceAll("\\{format\\}", "json");
+        // create path and map variables
+        String path = "/service/api/json/1.1/companies".replaceAll("\\{format\\}", "json");
 
-      // query params
-      Map<String, String> queryParams = new HashMap<String, String>();
-      Map<String, String> headerParams = new HashMap<String, String>();
-
-
-
-      try {
-          String response = trackinApi.invokeAPI(path, "POST", queryParams, body, headerParams);
-          if (response != null) {
-              return (Company) trackinApi.deserialize(response, "", Company.class);
-          } else {
-              return null;
-          }
-      } catch (ApiException ex) {
-          if (ex.getCode() == 404) {
-              return null;
-          } else {
-              throw ex;
-          }
-      }
-  }
-  
-    
-  public Company getOne(Long companyId) throws ApiException {
+        // query params
+        Map<String, String> queryParams = new HashMap<String, String>();
+        Map<String, String> headerParams = new HashMap<String, String>();
 
 
-      // create path and map variables
-      String path = "/service/api/json/1.1/companies/{companyId}".replaceAll("\\{format\\}", "json")
-              .replaceAll("\\{" + "companyId" + "\\}", trackinApi.escapeString(companyId.toString()));
+        try {
+            String response = trackinApi.invokeAPI(path, "POST", queryParams, body, headerParams);
+            if (response != null) {
+                return (Company) trackinApi.deserialize(response, "", Company.class);
+            } else {
+                return null;
+            }
+        } catch (ApiException ex) {
+            if (ex.getCode() == 404) {
+                return null;
+            } else {
+                throw ex;
+            }
+        }
+    }
 
-      // query params
-      Map<String, String> queryParams = new HashMap<String, String>();
-      Map<String, String> headerParams = new HashMap<String, String>();
-
-
-
-      try {
-          String response = trackinApi.invokeAPI(path, "GET", queryParams, null, headerParams);
-          if (response != null) {
-              return (Company) trackinApi.deserialize(response, "", Company.class);
-          } else {
-              return null;
-          }
-      } catch (ApiException ex) {
-          if (ex.getCode() == 404) {
-              return null;
-          } else {
-              throw ex;
-          }
-      }
-  }
-  
-    
-  public Company update(Long companyId, CompanyFormUpdate body) throws ApiException {
+    public Company getOne(Long companyId) throws ApiException {
 
 
-      // create path and map variables
-      String path = "/service/api/json/1.1/companies/{companyId}".replaceAll("\\{format\\}", "json")
-              .replaceAll("\\{" + "companyId" + "\\}", trackinApi.escapeString(companyId.toString()));
+        // create path and map variables
+        String path = "/service/api/json/1.1/companies/{companyId}".replaceAll("\\{format\\}", "json")
+                .replaceAll("\\{" + "companyId" + "\\}", trackinApi.escapeString(companyId.toString()));
 
-      // query params
-      Map<String, String> queryParams = new HashMap<String, String>();
-      Map<String, String> headerParams = new HashMap<String, String>();
-
-
-
-      try {
-          String response = trackinApi.invokeAPI(path, "PUT", queryParams, body, headerParams);
-          if (response != null) {
-              return (Company) trackinApi.deserialize(response, "", Company.class);
-          } else {
-              return null;
-          }
-      } catch (ApiException ex) {
-          if (ex.getCode() == 404) {
-              return null;
-          } else {
-              throw ex;
-          }
-      }
-  }
-  
-    
-  public void updateCompanyAccounts (Long companyId, Long accountId) throws ApiException {
+        // query params
+        Map<String, String> queryParams = new HashMap<String, String>();
+        Map<String, String> headerParams = new HashMap<String, String>();
 
 
-      // create path and map variables
-      String path = "/service/api/json/1.1/companies/{companyId}/account/{accountId}".replaceAll("\\{format\\}", "json")
-              .replaceAll("\\{" + "companyId" + "\\}", trackinApi.escapeString(companyId.toString()))
-              .replaceAll("\\{" + "accountId" + "\\}", trackinApi.escapeString(accountId.toString()));
+        try {
+            String response = trackinApi.invokeAPI(path, "GET", queryParams, null, headerParams);
+            if (response != null) {
+                return (Company) trackinApi.deserialize(response, "", Company.class);
+            } else {
+                return null;
+            }
+        } catch (ApiException ex) {
+            if (ex.getCode() == 404) {
+                return null;
+            } else {
+                throw ex;
+            }
+        }
+    }
 
-      // query params
-      Map<String, String> queryParams = new HashMap<String, String>();
-      Map<String, String> headerParams = new HashMap<String, String>();
+    public Company update(Long companyId, CompanyFormUpdate body) throws ApiException {
 
-      trackinApi.invokeAPI(path, "PUT", queryParams, null, headerParams);
 
-  }
-  
+        // create path and map variables
+        String path = "/service/api/json/1.1/companies/{companyId}".replaceAll("\\{format\\}", "json")
+                .replaceAll("\\{" + "companyId" + "\\}", trackinApi.escapeString(companyId.toString()));
+
+        // query params
+        Map<String, String> queryParams = new HashMap<String, String>();
+        Map<String, String> headerParams = new HashMap<String, String>();
+
+
+        try {
+            String response = trackinApi.invokeAPI(path, "PUT", queryParams, body, headerParams);
+            if (response != null) {
+                return (Company) trackinApi.deserialize(response, "", Company.class);
+            } else {
+                return null;
+            }
+        } catch (ApiException ex) {
+            if (ex.getCode() == 404) {
+                return null;
+            } else {
+                throw ex;
+            }
+        }
+    }
+
+    public void updateCompanyAccounts(Long companyId, Long accountId) throws ApiException {
+
+
+        // create path and map variables
+        String path = "/service/api/json/1.1/companies/{companyId}/account/{accountId}".replaceAll("\\{format\\}", "json")
+                .replaceAll("\\{" + "companyId" + "\\}", trackinApi.escapeString(companyId.toString()))
+                .replaceAll("\\{" + "accountId" + "\\}", trackinApi.escapeString(accountId.toString()));
+
+        // query params
+        Map<String, String> queryParams = new HashMap<String, String>();
+        Map<String, String> headerParams = new HashMap<String, String>();
+
+        trackinApi.invokeAPI(path, "PUT", queryParams, null, headerParams);
+
+    }
+
+
+    public enum OrderType {
+        Delivery("delivery"),
+        CateringDelivery("catering"),
+        TakeAway("takeAway");
+
+        private String value;
+
+        OrderType(String value) { this.value = value; }
+
+        @Override
+        public String toString() { return value; }
+    }
+
 }
