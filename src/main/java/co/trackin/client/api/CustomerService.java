@@ -29,11 +29,11 @@ public class CustomerService {
       Map<String, String> headerParams = new HashMap<String, String>();
 
 
-      if (!"null".equals(valueOf(query)))
+      if (query != null && !query.isEmpty())
           queryParams.put("query", valueOf(query));
-      if (!"null".equals(valueOf(page)))
+      if (page != null && page >= 0)
           queryParams.put("page", valueOf(page));
-      if (!"null".equals(valueOf(per_page)))
+      if (per_page != null && per_page > 0)
           queryParams.put("per_page", valueOf(per_page));
 
 

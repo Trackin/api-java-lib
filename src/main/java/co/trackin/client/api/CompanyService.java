@@ -41,10 +41,10 @@ public class CompanyService {
       Map<String, String> headerParams = new HashMap<String, String>();
 
 
-      if (!"null".equals(valueOf(deliveryAddress)))
+      if (deliveryAddress != null)
           queryParams.put("for", valueOf(deliveryAddress));
-      if (!"null".equals(valueOf(mode)))
-          queryParams.put("mode", valueOf(mode));
+      if (orderType != null)
+          queryParams.put("mode", valueOf(orderType));
 
 
       try {

@@ -33,11 +33,11 @@ public class DeliveryService {
       Map<String, String> headerParams = new HashMap<String, String>();
 
 
-      if (!"null".equals(valueOf(after)))
+      if (after != null && after > 0)
           queryParams.put("after", valueOf(after));
-      if (!"null".equals(valueOf(before)))
+      if (before != null && before > 0)
           queryParams.put("before", valueOf(before));
-      if (!"null".equals(valueOf(status)))
+      if (status != null && !status.isEmpty())
           queryParams.put("status", valueOf(status));
 
 
