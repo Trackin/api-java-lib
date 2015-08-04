@@ -26,7 +26,7 @@ public class DeliveryFormUpdate {
     private Double taxes = null;
     private Double tip = null;
     private Double total = null;
-
+    private String webhookUrl;
 
     /**
      * Tell if the order was confirmed or not. Can be confirmed via an update or using the Trackin dashboard
@@ -138,6 +138,7 @@ public class DeliveryFormUpdate {
     }
 
 
+
     /**
      *
      **/
@@ -151,6 +152,16 @@ public class DeliveryFormUpdate {
         this.total = total;
     }
 
+    /**
+     * Url of a webhook to get delivery status changes
+     **/
+    @ApiModelProperty(required = false, value = "")
+    @JsonProperty("webhookUrl")
+    public String getWebhookUrl() { return webhookUrl; }
+
+    public void setWebhookUrl(String webhookUrl) {this.webhookUrl = webhookUrl;}
+
+
     public DeliveryFormUpdate(Delivery delivery){
         this.confirmationStatus = delivery.getConfirmationStatus();
         this.content = delivery.getContent();
@@ -161,6 +172,7 @@ public class DeliveryFormUpdate {
         this.taxes = delivery.getTaxes();
         this.tip = delivery.getTip();
         this.total = delivery.getTotal();
+        this.webhookUrl = delivery.getWebhookUrl();
 
     }
 
@@ -178,7 +190,9 @@ public class DeliveryFormUpdate {
         sb.append("  taxes: ").append(taxes).append("\n");
         sb.append("  tip: ").append(tip).append("\n");
         sb.append("  total: ").append(total).append("\n");
+        sb.append("  webhookUrl: ").append(webhookUrl).append("\n");
         sb.append("}\n");
         return sb.toString();
     }
+
 }

@@ -41,6 +41,7 @@ public class DeliveryForm {
     private Double tip = null;
     private Double total = null;
     private Contact recipient = null;
+    private String webhookUrl;
     public enum StatusEnum {
         New, Assigned, Delivering, Delivered, Cancelled,
     }
@@ -376,6 +377,15 @@ public class DeliveryForm {
         this.recipient = recipient;
     }
 
+    /**
+     * Url of a webhook to get delivery status changes
+     **/
+    @ApiModelProperty(required = false, value = "")
+    @JsonProperty("webhookUrl")
+    public String getWebhookUrl() { return webhookUrl; }
+
+    public void setWebhookUrl(String webhookUrl) {this.webhookUrl = webhookUrl;}
+
 
     @Override
     public String toString() {
@@ -406,6 +416,7 @@ public class DeliveryForm {
         sb.append("  tip: ").append(tip).append("\n");
         sb.append("  total: ").append(total).append("\n");
         sb.append("  recipient: ").append(recipient).append("\n");
+        sb.append("  webhookUrl: ").append(webhookUrl).append("\n");
         sb.append("}\n");
         return sb.toString();
     }

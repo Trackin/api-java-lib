@@ -55,7 +55,7 @@ public class Delivery {
     private Long time = null;
     private String userReview = null;
     private Contact recipient = null;
-
+    private String webhookUrl;
 
     /**
      **/
@@ -485,6 +485,14 @@ public class Delivery {
         this.recipient = recipient;
     }
 
+    /**
+     * Url of a webhook to get delivery status changes
+     **/
+    @ApiModelProperty(required = false, value = "")
+    @JsonProperty("webhookUrl")
+    public String getWebhookUrl() { return webhookUrl; }
+
+    public void setWebhookUrl(String webhookUrl) {this.webhookUrl = webhookUrl;}
 
     @Override
     public String toString() {
@@ -522,6 +530,7 @@ public class Delivery {
         sb.append("  time: ").append(time).append("\n");
         sb.append("  userReview: ").append(userReview).append("\n");
         sb.append("  recipient: ").append(recipient).append("\n");
+        sb.append("  webhookUrl: ").append(webhookUrl).append("\n");
         sb.append("}\n");
         return sb.toString();
     }
